@@ -1,0 +1,392 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="admin-page">
+
+    <div class="page-header admin-publications-header">
+        <div>
+            <span class="section-label">
+                <i class="fa-solid fa-file-lines"></i>
+                Administración
+            </span>
+
+            <h1>Publicaciones institucionales</h1>
+
+            <p>
+                Administra los comunicados, avisos y contenidos oficiales
+                publicados en NEXO.
+            </p>
+        </div>
+
+        <button class="primary-button" id="openPublicationModal">
+            <i class="fa-solid fa-plus"></i>
+            Nueva publicación
+        </button>
+    </div>
+
+    <section class="publication-tools">
+
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="text"
+                id="publicationSearch"
+                placeholder="Buscar publicaciones..."
+            >
+        </div>
+
+        <select id="publicationTypeFilter">
+            <option value="all">Todos los tipos</option>
+            <option value="Comunicado">Comunicados</option>
+            <option value="Aviso">Avisos</option>
+            <option value="Convocatoria">Convocatorias</option>
+            <option value="Evento">Eventos</option>
+            <option value="Información general">Información general</option>
+        </select>
+
+        <select id="publicationStatusFilter">
+            <option value="all">Todos los estados</option>
+            <option value="published">Publicadas</option>
+            <option value="draft">Borradores</option>
+        </select>
+
+    </section>
+
+    <div class="publication-admin-grid" id="publicationAdminGrid">
+
+        <article
+            class="publication-admin-card"
+            data-type="Comunicado"
+            data-status="published"
+            data-search="mantenimiento plataforma institucional comunicado"
+        >
+            <div class="publication-admin-card-top">
+                <span class="publication-type comunicado">
+                    Comunicado
+                </span>
+
+                <span class="publication-status published">
+                    Publicada
+                </span>
+            </div>
+
+            <div class="publication-admin-icon">
+                <i class="fa-solid fa-bullhorn"></i>
+            </div>
+
+            <h3>Mantenimiento de la plataforma institucional</h3>
+
+            <p>
+                Se informa al personal que se realizarán trabajos de
+                mantenimiento en los servicios digitales institucionales.
+            </p>
+
+            <div class="publication-admin-meta">
+                <span>
+                    <i class="fa-regular fa-calendar"></i>
+                    19 septiembre 2026
+                </span>
+
+                <span>
+                    <i class="fa-regular fa-user"></i>
+                    Administración
+                </span>
+            </div>
+
+            <div class="publication-admin-actions">
+                <button class="secondary-button edit-publication">
+                    <i class="fa-solid fa-pen"></i>
+                    Editar
+                </button>
+
+                <button class="danger-button delete-publication">
+                    <i class="fa-solid fa-trash"></i>
+                    Eliminar
+                </button>
+            </div>
+        </article>
+
+        <article
+            class="publication-admin-card"
+            data-type="Aviso"
+            data-status="published"
+            data-search="actualización de datos personales aviso"
+        >
+            <div class="publication-admin-card-top">
+                <span class="publication-type aviso">
+                    Aviso
+                </span>
+
+                <span class="publication-status published">
+                    Publicada
+                </span>
+            </div>
+
+            <div class="publication-admin-icon">
+                <i class="fa-solid fa-circle-info"></i>
+            </div>
+
+            <h3>Actualización de datos personales</h3>
+
+            <p>
+                El personal deberá verificar y actualizar sus datos
+                institucionales durante el periodo establecido.
+            </p>
+
+            <div class="publication-admin-meta">
+                <span>
+                    <i class="fa-regular fa-calendar"></i>
+                    18 septiembre 2026
+                </span>
+
+                <span>
+                    <i class="fa-regular fa-user"></i>
+                    Recursos Humanos
+                </span>
+            </div>
+
+            <div class="publication-admin-actions">
+                <button class="secondary-button edit-publication">
+                    <i class="fa-solid fa-pen"></i>
+                    Editar
+                </button>
+
+                <button class="danger-button delete-publication">
+                    <i class="fa-solid fa-trash"></i>
+                    Eliminar
+                </button>
+            </div>
+        </article>
+
+        <article
+            class="publication-admin-card"
+            data-type="Evento"
+            data-status="published"
+            data-search="foro innovación tecnológica evento"
+        >
+            <div class="publication-admin-card-top">
+                <span class="publication-type evento">
+                    Evento
+                </span>
+
+                <span class="publication-status published">
+                    Publicada
+                </span>
+            </div>
+
+            <div class="publication-admin-icon">
+                <i class="fa-solid fa-calendar-days"></i>
+            </div>
+
+            <h3>Foro de innovación tecnológica</h3>
+
+            <p>
+                Espacio de participación para compartir ideas, proyectos
+                y propuestas relacionadas con la transformación digital.
+            </p>
+
+            <div class="publication-admin-meta">
+                <span>
+                    <i class="fa-regular fa-calendar"></i>
+                    16 septiembre 2026
+                </span>
+
+                <span>
+                    <i class="fa-regular fa-user"></i>
+                    Gobierno Digital
+                </span>
+            </div>
+
+            <div class="publication-admin-actions">
+                <button class="secondary-button edit-publication">
+                    <i class="fa-solid fa-pen"></i>
+                    Editar
+                </button>
+
+                <button class="danger-button delete-publication">
+                    <i class="fa-solid fa-trash"></i>
+                    Eliminar
+                </button>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="empty-admin-state" id="publicationsEmptyState">
+        <i class="fa-regular fa-folder-open"></i>
+        <h3>No se encontraron publicaciones</h3>
+        <p>Intenta cambiar los filtros o registrar una nueva publicación.</p>
+    </div>
+
+</section>
+
+<div class="modal-overlay" id="publicationModal">
+
+    <div class="publication-modal">
+
+        <div class="modal-header">
+            <div>
+                <span class="section-label">
+                    <i class="fa-solid fa-file-circle-plus"></i>
+                    Gestión de contenido
+                </span>
+
+                <h2 id="publicationModalTitle">
+                    Nueva publicación
+                </h2>
+            </div>
+
+            <button class="modal-close" id="closePublicationModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="publicationForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="publicationTitle">
+                        Título de la publicación
+                    </label>
+
+                    <input
+                        type="text"
+                        id="publicationTitle"
+                        placeholder="Ej. Mantenimiento de sistemas"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="publicationType">
+                        Tipo de publicación
+                    </label>
+
+                    <select id="publicationType" required>
+                        <option value="">Seleccionar tipo</option>
+                        <option value="Comunicado">Comunicado</option>
+                        <option value="Aviso">Aviso</option>
+                        <option value="Convocatoria">Convocatoria</option>
+                        <option value="Evento">Evento</option>
+                        <option value="Información general">
+                            Información general
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group form-group-full">
+                    <label for="publicationContent">
+                        Contenido
+                    </label>
+
+                    <textarea
+                        id="publicationContent"
+                        rows="6"
+                        placeholder="Escribe el contenido de la publicación..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="publicationDate">
+                        Fecha de publicación
+                    </label>
+
+                    <input
+                        type="date"
+                        id="publicationDate"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="publicationExpiration">
+                        Fecha de expiración
+                    </label>
+
+                    <input
+                        type="date"
+                        id="publicationExpiration"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="publicationImage">
+                        Imagen principal
+                    </label>
+
+                    <input
+                        type="file"
+                        id="publicationImage"
+                        accept="image/*"
+                    >
+
+                    <small>
+                        Formatos permitidos: JPG, PNG o WEBP.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="publicationFile">
+                        Documento adjunto
+                    </label>
+
+                    <input
+                        type="file"
+                        id="publicationFile"
+                        accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx"
+                    >
+
+                    <small>
+                        PDF, Word, Excel o PowerPoint.
+                    </small>
+                </div>
+
+                <div class="form-group form-group-full">
+                    <label for="publicationStatus">
+                        Estado
+                    </label>
+
+                    <select id="publicationStatus">
+                        <option value="published">Publicar ahora</option>
+                        <option value="draft">Guardar como borrador</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="publication-preview" id="publicationPreview">
+                <div class="publication-preview-icon">
+                    <i class="fa-solid fa-image"></i>
+                </div>
+
+                <div>
+                    <strong>Vista previa de imagen</strong>
+                    <p>La imagen seleccionada aparecerá aquí.</p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelPublication"
+                >
+                    Cancelar
+                </button>
+
+                <button type="submit" class="primary-button">
+                    <i class="fa-solid fa-save"></i>
+                    Guardar publicación
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

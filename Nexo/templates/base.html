@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}NEXO{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="nav-left">
+
+            <a href="{{ url_for('inicio') }}"
+               class="logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-link"></i>
+                </div>
+
+                <div class="logo-text">
+                    <strong>NEXO</strong>
+                    <span>Comunicación Institucional</span>
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <nav class="nav-center">
+
+            <a href="{{ url_for('inicio') }}">
+                <i class="fa-solid fa-house"></i>
+                <span>Inicio</span>
+            </a>
+
+            <a href="{{ url_for('convocatorias') }}">
+                <i class="fa-solid fa-bullhorn"></i>
+                <span>Convocatorias</span>
+            </a>
+
+            <a href="{{ url_for('mensajes') }}">
+                <i class="fa-solid fa-comments"></i>
+                <span>Mensajes</span>
+            </a>
+
+            <a href="{{ url_for('personas') }}">
+                <i class="fa-solid fa-users"></i>
+                <span>Personas</span>
+            </a>
+
+        </nav>
+
+
+        <div class="nav-right">
+
+            <button class="notification-button">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+
+            <a href="{{ url_for('perfil') }}"
+               class="profile-button">
+
+                <div class="profile-avatar">
+                    R
+                </div>
+
+                <span>Roberto</span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main class="main-container">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html> 

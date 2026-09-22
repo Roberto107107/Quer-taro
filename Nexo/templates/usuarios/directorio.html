@@ -1,0 +1,584 @@
+{% extends "base.html" %}
+
+{% block title %}
+Personas | NEXO
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================
+     ENCABEZADO
+========================= -->
+
+<section class="page-header">
+
+    <div>
+
+        <span class="section-label">
+            DIRECTORIO INSTITUCIONAL
+        </span>
+
+        <h1>
+            Personas
+        </h1>
+
+        <p>
+            Encuentra a los integrantes de la organización
+            y comunícate directamente con ellos.
+        </p>
+
+    </div>
+
+    <div class="page-header-icon">
+
+        <i class="fa-solid fa-users"></i>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BUSCADOR
+========================= -->
+
+<section class="people-search-card">
+
+    <div class="people-search">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="searchPeople"
+            placeholder="Buscar por nombre, área o puesto..."
+        >
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FILTROS
+========================= -->
+
+<section class="people-toolbar">
+
+    <div>
+
+        <h2>
+            Directorio
+        </h2>
+
+        <p>
+            <span id="peopleCount">8</span>
+            integrantes encontrados
+        </p>
+
+    </div>
+
+
+    <select id="areaFilter" class="area-select">
+
+        <option value="todas">
+            Todas las áreas
+        </option>
+
+        <option value="gobierno digital">
+            Gobierno Digital
+        </option>
+
+        <option value="recursos humanos">
+            Recursos Humanos
+        </option>
+
+        <option value="administración">
+            Administración
+        </option>
+
+        <option value="tecnologías de información">
+            Tecnologías de Información
+        </option>
+
+    </select>
+
+</section>
+
+
+<!-- =========================
+     PERSONAS
+========================= -->
+
+<section class="people-grid" id="peopleGrid">
+
+
+    <!-- PERSONA 1 -->
+
+    <article
+        class="person-card"
+        data-name="ana martinez"
+        data-area="gobierno digital"
+        data-position="directora de gobierno digital">
+
+        <div class="person-top">
+
+            <div class="person-avatar avatar-blue">
+                AM
+            </div>
+
+            <span class="online-status online">
+                Disponible
+            </span>
+
+        </div>
+
+
+        <div class="person-info">
+
+            <h3>
+                Ana Martínez
+            </h3>
+
+            <span class="person-position">
+                Directora de Gobierno Digital
+            </span>
+
+            <span class="person-area">
+                <i class="fa-solid fa-building"></i>
+                Gobierno Digital
+            </span>
+
+        </div>
+
+
+        <div class="person-actions">
+
+            <a href="{{ url_for('mensajes') }}"
+               class="message-button">
+
+                <i class="fa-regular fa-comment"></i>
+
+                Enviar mensaje
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- PERSONA 2 -->
+
+    <article
+        class="person-card"
+        data-name="carlos ramirez"
+        data-area="tecnologías de información"
+        data-position="jefe de infraestructura">
+
+        <div class="person-top">
+
+            <div class="person-avatar avatar-green">
+                CR
+            </div>
+
+            <span class="online-status online">
+                Disponible
+            </span>
+
+        </div>
+
+
+        <div class="person-info">
+
+            <h3>
+                Carlos Ramírez
+            </h3>
+
+            <span class="person-position">
+                Jefe de Infraestructura
+            </span>
+
+            <span class="person-area">
+                <i class="fa-solid fa-building"></i>
+                Tecnologías de Información
+            </span>
+
+        </div>
+
+
+        <div class="person-actions">
+
+            <a href="{{ url_for('mensajes') }}"
+               class="message-button">
+
+                <i class="fa-regular fa-comment"></i>
+
+                Enviar mensaje
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- PERSONA 3 -->
+
+    <article
+        class="person-card"
+        data-name="mariana lopez"
+        data-area="recursos humanos"
+        data-position="coordinadora de recursos humanos">
+
+        <div class="person-top">
+
+            <div class="person-avatar avatar-purple">
+                ML
+            </div>
+
+            <span class="online-status online">
+                Disponible
+            </span>
+
+        </div>
+
+
+        <div class="person-info">
+
+            <h3>
+                Mariana López
+            </h3>
+
+            <span class="person-position">
+                Coordinadora de Recursos Humanos
+            </span>
+
+            <span class="person-area">
+                <i class="fa-solid fa-building"></i>
+                Recursos Humanos
+            </span>
+
+        </div>
+
+
+        <div class="person-actions">
+
+            <a href="{{ url_for('mensajes') }}"
+               class="message-button">
+
+                <i class="fa-regular fa-comment"></i>
+
+                Enviar mensaje
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- PERSONA 4 -->
+
+    <article
+        class="person-card"
+        data-name="jorge hernandez"
+        data-area="administración"
+        data-position="coordinador administrativo">
+
+        <div class="person-top">
+
+            <div class="person-avatar avatar-orange">
+                JH
+            </div>
+
+            <span class="online-status away">
+                Ausente
+            </span>
+
+        </div>
+
+
+        <div class="person-info">
+
+            <h3>
+                Jorge Hernández
+            </h3>
+
+            <span class="person-position">
+                Coordinador Administrativo
+            </span>
+
+            <span class="person-area">
+                <i class="fa-solid fa-building"></i>
+                Administración
+            </span>
+
+        </div>
+
+
+        <div class="person-actions">
+
+            <a href="{{ url_for('mensajes') }}"
+               class="message-button">
+
+                <i class="fa-regular fa-comment"></i>
+
+                Enviar mensaje
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- PERSONA 5 -->
+
+    <article
+        class="person-card"
+        data-name="laura gonzalez"
+        data-area="gobierno digital"
+        data-position="analista de sistemas">
+
+        <div class="person-top">
+
+            <div class="person-avatar avatar-pink">
+                LG
+            </div>
+
+            <span class="online-status offline">
+                Desconectada
+            </span>
+
+        </div>
+
+
+        <div class="person-info">
+
+            <h3>
+                Laura González
+            </h3>
+
+            <span class="person-position">
+                Analista de Sistemas
+            </span>
+
+            <span class="person-area">
+                <i class="fa-solid fa-building"></i>
+                Gobierno Digital
+            </span>
+
+        </div>
+
+
+        <div class="person-actions">
+
+            <a href="{{ url_for('mensajes') }}"
+               class="message-button">
+
+                <i class="fa-regular fa-comment"></i>
+
+                Enviar mensaje
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- PERSONA 6 -->
+
+    <article
+        class="person-card"
+        data-name="miguel torres"
+        data-area="tecnologías de información"
+        data-position="desarrollador">
+
+        <div class="person-top">
+
+            <div class="person-avatar avatar-blue">
+                MT
+            </div>
+
+            <span class="online-status online">
+                Disponible
+            </span>
+
+        </div>
+
+
+        <div class="person-info">
+
+            <h3>
+                Miguel Torres
+            </h3>
+
+            <span class="person-position">
+                Desarrollador
+            </span>
+
+            <span class="person-area">
+                <i class="fa-solid fa-building"></i>
+                Tecnologías de Información
+            </span>
+
+        </div>
+
+
+        <div class="person-actions">
+
+            <a href="{{ url_for('mensajes') }}"
+               class="message-button">
+
+                <i class="fa-regular fa-comment"></i>
+
+                Enviar mensaje
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- PERSONA 7 -->
+
+    <article
+        class="person-card"
+        data-name="sofia castillo"
+        data-area="administración"
+        data-position="analista administrativo">
+
+        <div class="person-top">
+
+            <div class="person-avatar avatar-green">
+                SC
+            </div>
+
+            <span class="online-status online">
+                Disponible
+            </span>
+
+        </div>
+
+
+        <div class="person-info">
+
+            <h3>
+                Sofía Castillo
+            </h3>
+
+            <span class="person-position">
+                Analista Administrativo
+            </span>
+
+            <span class="person-area">
+                <i class="fa-solid fa-building"></i>
+                Administración
+            </span>
+
+        </div>
+
+
+        <div class="person-actions">
+
+            <a href="{{ url_for('mensajes') }}"
+               class="message-button">
+
+                <i class="fa-regular fa-comment"></i>
+
+                Enviar mensaje
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- PERSONA 8 -->
+
+    <article
+        class="person-card"
+        data-name="daniel morales"
+        data-area="recursos humanos"
+        data-position="analista de personal">
+
+        <div class="person-top">
+
+            <div class="person-avatar avatar-purple">
+                DM
+            </div>
+
+            <span class="online-status offline">
+                Desconectado
+            </span>
+
+        </div>
+
+
+        <div class="person-info">
+
+            <h3>
+                Daniel Morales
+            </h3>
+
+            <span class="person-position">
+                Analista de Personal
+            </span>
+
+            <span class="person-area">
+                <i class="fa-solid fa-building"></i>
+                Recursos Humanos
+            </span>
+
+        </div>
+
+
+        <div class="person-actions">
+
+            <a href="{{ url_for('mensajes') }}"
+               class="message-button">
+
+                <i class="fa-regular fa-comment"></i>
+
+                Enviar mensaje
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+</section>
+
+
+<!-- =========================
+     SIN RESULTADOS
+========================= -->
+
+<div
+    id="peopleNoResults"
+    class="no-results"
+    style="display: none;">
+
+    <div class="empty-icon">
+
+        <i class="fa-solid fa-user-slash"></i>
+
+    </div>
+
+    <h3>
+        No encontramos personas
+    </h3>
+
+    <p>
+        Intenta buscar con otro nombre, área o puesto.
+    </p>
+
+</div>
+
+{% endblock %}

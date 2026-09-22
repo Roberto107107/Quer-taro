@@ -1,0 +1,373 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="messages-page">
+
+    <!-- Encabezado -->
+    <div class="page-header">
+        <div>
+            <h1>Mensajes</h1>
+            <p>Comunicación interna con el personal de la organización.</p>
+        </div>
+    </div>
+
+    <div class="messages-container">
+
+        <!-- =========================
+             LISTA DE CONVERSACIONES
+        ========================== -->
+        <aside class="conversations-panel">
+
+            <div class="conversations-header">
+                <h2>Conversaciones</h2>
+                <button class="new-message-button" title="Nuevo mensaje">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+
+            <!-- Buscador -->
+            <div class="conversation-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                    type="text"
+                    id="searchConversations"
+                    placeholder="Buscar conversación..."
+                >
+            </div>
+
+            <!-- Conversaciones -->
+            <div class="conversation-list" id="conversationList">
+
+                <!-- Ana -->
+                <div
+                    class="conversation-item active"
+                    data-name="Ana Martínez"
+                    data-user="ana"
+                    onclick="openConversation('ana')"
+                >
+                    <div class="conversation-avatar">
+                        AM
+                        <span class="status-dot available"></span>
+                    </div>
+
+                    <div class="conversation-info">
+                        <div class="conversation-top">
+                            <strong>Ana Martínez</strong>
+                            <span>08:42</span>
+                        </div>
+
+                        <div class="conversation-bottom">
+                            <p>¿Ya revisaste el documento?</p>
+                            <span class="unread-badge">2</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Carlos -->
+                <div
+                    class="conversation-item"
+                    data-name="Carlos Ramírez"
+                    data-user="carlos"
+                    onclick="openConversation('carlos')"
+                >
+                    <div class="conversation-avatar">
+                        CR
+                        <span class="status-dot available"></span>
+                    </div>
+
+                    <div class="conversation-info">
+                        <div class="conversation-top">
+                            <strong>Carlos Ramírez</strong>
+                            <span>Ayer</span>
+                        </div>
+
+                        <div class="conversation-bottom">
+                            <p>Te envié el archivo solicitado.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Mariana -->
+                <div
+                    class="conversation-item"
+                    data-name="Mariana López"
+                    data-user="mariana"
+                    onclick="openConversation('mariana')"
+                >
+                    <div class="conversation-avatar">
+                        ML
+                        <span class="status-dot available"></span>
+                    </div>
+
+                    <div class="conversation-info">
+                        <div class="conversation-top">
+                            <strong>Mariana López</strong>
+                            <span>Lun</span>
+                        </div>
+
+                        <div class="conversation-bottom">
+                            <p>Perfecto, muchas gracias.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Jorge -->
+                <div
+                    class="conversation-item"
+                    data-name="Jorge Hernández"
+                    data-user="jorge"
+                    onclick="openConversation('jorge')"
+                >
+                    <div class="conversation-avatar">
+                        JH
+                        <span class="status-dot away"></span>
+                    </div>
+
+                    <div class="conversation-info">
+                        <div class="conversation-top">
+                            <strong>Jorge Hernández</strong>
+                            <span>Vie</span>
+                        </div>
+
+                        <div class="conversation-bottom">
+                            <p>Nos vemos mañana.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Laura -->
+                <div
+                    class="conversation-item"
+                    data-name="Laura González"
+                    data-user="laura"
+                    onclick="openConversation('laura')"
+                >
+                    <div class="conversation-avatar">
+                        LG
+                        <span class="status-dot offline"></span>
+                    </div>
+
+                    <div class="conversation-info">
+                        <div class="conversation-top">
+                            <strong>Laura González</strong>
+                            <span>Jue</span>
+                        </div>
+
+                        <div class="conversation-bottom">
+                            <p>Gracias por la información.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="no-conversations" id="noConversations">
+                <i class="fa-regular fa-comments"></i>
+                <p>No se encontraron conversaciones.</p>
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             CHAT ACTIVO
+        ========================== -->
+        <section class="chat-panel">
+
+            <!-- Header del chat -->
+            <div class="chat-header">
+
+                <div class="chat-user-info">
+
+                    <div class="chat-avatar" id="chatAvatar">
+                        AM
+                        <span class="status-dot available"></span>
+                    </div>
+
+                    <div>
+                        <h2 id="chatName">Ana Martínez</h2>
+                        <span id="chatStatus">Disponible</span>
+                    </div>
+
+                </div>
+
+                <div class="chat-actions">
+
+                    <button title="Información">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Área de mensajes -->
+            <div class="chat-messages" id="chatMessages">
+
+                <div class="chat-date">
+                    <span>Hoy</span>
+                </div>
+
+
+                <!-- Mensaje recibido -->
+                <div class="message received">
+
+                    <div class="message-bubble">
+
+                        <p>Hola Roberto, ¿cómo estás?</p>
+
+                        <span class="message-time">
+                            08:35
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Mensaje enviado -->
+                <div class="message sent">
+
+                    <div class="message-bubble">
+
+                        <p>
+                            Hola Ana, muy bien, gracias.
+                            ¿Y tú?
+                        </p>
+
+                        <span class="message-time">
+                            08:37
+                            <i class="fa-solid fa-check-double"></i>
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Mensaje recibido -->
+                <div class="message received">
+
+                    <div class="message-bubble">
+
+                        <p>
+                            Muy bien, gracias.
+                            Necesito enviarte un documento.
+                        </p>
+
+                        <span class="message-time">
+                            08:39
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Archivo -->
+                <div class="message received">
+
+                    <div class="file-message">
+
+                        <div class="file-icon">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+
+                        <div class="file-info">
+                            <strong>documento.pdf</strong>
+                            <span>2.4 MB</span>
+                        </div>
+
+                        <button title="Descargar">
+                            <i class="fa-solid fa-download"></i>
+                        </button>
+
+                    </div>
+
+                    <span class="message-time file-time">
+                        08:42
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ÁREA DE REDACCIÓN
+            ========================== -->
+            <div class="chat-input-area">
+
+                <!-- Vista previa de archivo -->
+                <div
+                    class="attachment-preview"
+                    id="attachmentPreview"
+                >
+                    <div>
+                        <i class="fa-solid fa-file"></i>
+                        <span id="attachmentName"></span>
+                    </div>
+
+                    <button onclick="removeAttachment()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+
+                <form
+                    class="message-form"
+                    id="messageForm"
+                >
+
+                    <!-- Adjuntar -->
+                    <label
+                        for="fileInput"
+                        class="attachment-button"
+                        title="Adjuntar archivo"
+                    >
+                        <i class="fa-solid fa-paperclip"></i>
+                    </label>
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        hidden
+                        accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.jpg,.jpeg,.png"
+                    >
+
+
+                    <!-- Mensaje -->
+                    <input
+                        type="text"
+                        id="messageInput"
+                        placeholder="Escribe un mensaje..."
+                        autocomplete="off"
+                    >
+
+
+                    <!-- Enviar -->
+                    <button
+                        type="submit"
+                        class="send-message-button"
+                        title="Enviar mensaje"
+                    >
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+
+{% endblock %}
