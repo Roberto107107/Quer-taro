@@ -1,0 +1,6 @@
+{% macro csrf() %}<input type="hidden" name="csrf_token" value="{{ csrf_token }}">{% endmacro %}
+{% macro field(name, label, type='text', value='', required=true) %}
+<div class="form-group"><label for="{{ name }}">{{ label }}</label><input id="{{ name }}" name="{{ name }}" type="{{ type }}" value="{{ request.form.get(name, value) if type != 'password' else '' }}" {% if required %}required{% endif %} {% if type == 'password' %}minlength="10" maxlength="256"{% elif type in ['text','email'] %}maxlength="200"{% endif %}></div>
+{% endmacro %}
+{% macro content(value='') %}<div class="form-group"><label for="contenido">Contenido</label><textarea id="contenido" name="contenido" rows="6" maxlength="20000" required>{{ request.form.get('contenido', value) }}</textarea></div>{% endmacro %}
+{% macro delete(endpoint, id) %}<form method="post" action="{{ url_for(endpoint, record_id=id) }}" data-confirm="¿Eliminar este registro? Esta acción no se puede deshacer.">{{ csrf() }}<button class="danger-button">Eliminar</button></form>{% endmacro %}

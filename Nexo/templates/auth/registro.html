@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% from "_forms.html" import csrf, field with context %}
+{% block content %}<section class="editor"><h1>Crear cuenta</h1><p>Administración verificará tu cuenta antes de que puedas acceder.</p>
+<form method="post">{{ csrf() }}<div class="form-grid">
+{{ field('nombre','Nombre') }}{{ field('apellidos','Apellidos') }}{{ field('correo','Correo institucional','email') }}
+{{ field('area','Área') }}{{ field('puesto','Puesto') }}{{ field('password','Contraseña (mínimo 10 caracteres)','password') }}{{ field('confirmacion','Repite la contraseña','password') }}
+</div><button class="primary-button">Registrarme</button> <a href="{{ url_for('login') }}">Volver al acceso</a></form></section>{% endblock %}

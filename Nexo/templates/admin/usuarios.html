@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% from "_forms.html" import csrf with context %}
+{% block content %}<div class="page-header"><h1>Usuarios</h1><a href="{{ url_for('admin') }}">Volver al panel</a></div><div class="cards">
+{% for u in usuarios %}<article class="publication-admin-card"><h2>{{ u.nombre }} {{ u.apellidos }}</h2><p>{{ u.correo }}</p><p>{{ u.area }} · {{ u.puesto }}</p>
+<form method="post">{{ csrf() }}<input type="hidden" name="usuario_id" value="{{ u.id }}">
+<div class="form-group"><label for="rol-{{ u.id }}">Rol</label><select id="rol-{{ u.id }}" name="rol">{% for r in ['usuario','admin'] %}<option {% if u.rol == r %}selected{% endif %}>{{ r }}</option>{% endfor %}</select></div>
+<label class="check"><input type="checkbox" name="activo" value="1" {% if u.activo %}checked{% endif %}> Cuenta activa</label>
+<label class="check"><input type="checkbox" name="verificado" value="1" {% if u.verificado %}checked{% endif %}> Identidad verificada</label><button class="primary-button">Guardar cambios</button></form></article>{% endfor %}</div>{% endblock %}

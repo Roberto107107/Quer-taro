@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="agreement-hero"><div><span class="eyebrow">NEXO / ACUERDOS</span><h1>Las conversaciones avanzan.<br><em>Los acuerdos se cumplen.</em></h1><p>Un espacio para dar seguimiento a lo que construyen juntos.</p><a class="hero-button" href="{{ url_for('mensajes') }}">Crear desde una conversación <span aria-hidden="true">↗</span></a></div><div class="hero-orbit" aria-hidden="true"><span class="orbit-caption">DEL MENSAJE A LA ACCIÓN</span><div class="orbit-node">01 <strong>Conversar</strong></div><div class="orbit-node">02 <strong>Acordar</strong></div><div class="orbit-node accent">03 <strong>Avanzar ↗</strong></div></div></section>
+<div class="agreement-metrics">
+{% for val,label,kind,state in [(counts.propuesto,'Por aceptar','amber','propuesto'),(counts.pendiente+counts.en_proceso,'En marcha','blue','activos'),(counts.completado,'Completados','mint','completado'),(vencidos,'Vencidos','rose','vencidos')] %}
+<a href="{{ url_for('acuerdos',estado=state) }}" class="agreement-metric {{ kind }}"><span>{{ label }}</span><strong>{{ val }}</strong><span class="metric-arrow" aria-hidden="true">↗</span></a>{% endfor %}
+</div>
+<div class="agreement-section-heading"><div><span class="eyebrow">TU SEGUIMIENTO</span><h2>Mis acuerdos</h2></div><span>Los que creaste y los que tienes asignados</span></div>
+<nav class="agreement-tabs" aria-label="Filtrar acuerdos"><a href="{{ url_for('acuerdos') }}" {% if not request.args.get('estado') %}aria-current="page"{% endif %}>Todos</a>{% for state,label in estados.items() %}<a href="{{ url_for('acuerdos',estado=state) }}" {% if request.args.get('estado')==state %}aria-current="page"{% endif %}>{{ label }} <span>{{ counts[state] }}</span></a>{% endfor %}</nav>
+<section class="agreement-grid">{% for a in acuerdos %}<article class="agreement-card">
+<div class="agreement-card-top"><span class="state-pill {{ a.estado }}">{{ estados[a.estado] }}</span><span class="agreement-number">#{{ '%03d'|format(a.id) }}</span></div>
+<h3><a href="{{ url_for('detalle_acuerdo',agreement_id=a.id) }}">{{ a.titulo }}</a></h3><p class="agreement-excerpt">{{ a.descripcion }}</p>
+<div class="agreement-owner"><span class="mini-avatar">{{ a.responsable[:1] }}</span><div><small>Responsable</small><strong>{{ a.responsable }}{% if a.responsable_id==usuario.id %} · Tú{% endif %}</strong></div></div>
+<div class="agreement-card-footer"><span class="{{ 'deadline-late' if a.vencido else '' }}">{{ 'Vencido · ' if a.vencido else 'Entrega · ' }}{{ a.fecha_limite }}</span><a href="{{ url_for('detalle_acuerdo',agreement_id=a.id) }}" aria-label="Ver acuerdo: {{ a.titulo }}">Ver acuerdo ↗</a></div>
+</article>{% else %}<div class="agreement-empty"><span class="empty-symbol" aria-hidden="true">✓</span><h3>{{ 'Sin acuerdos en este estado' if request.args.get('estado') else 'Todo comienza con una conversación' }}</h3><p>Abre un mensaje y selecciona «Crear acuerdo» para definir el siguiente paso.</p><a class="primary-button" href="{{ url_for('mensajes') }}">Ir a mensajes ↗</a></div>{% endfor %}</section>
+{% endblock %}

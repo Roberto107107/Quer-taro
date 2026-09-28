@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% from "_forms.html" import csrf, field, content, delete with context %}
+{% block content %}<div class="page-header"><h1>Administrar convocatorias</h1><a href="{{ url_for('admin') }}">Volver al panel</a></div>
+<section class="editor"><h2>{{ 'Editar convocatoria' if item else 'Nueva convocatoria' }}</h2><form method="post">{{ csrf() }}
+{{ field('titulo','Título',value=item.titulo if item else '') }}<div class="form-grid">{{ field('area','Área',value=item.area if item else '') }}{{ field('lugar','Lugar',value=item.lugar if item else '') }}
+{{ field('inicio','Inicio (hora local)','datetime-local',item.inicio if item else '') }}{{ field('fin','Cierre (hora local)','datetime-local',item.fin if item else '') }}</div>
+{{ content(item.contenido if item else '') }}<button class="primary-button">Guardar convocatoria</button>{% if item %} <a href="{{ url_for('admin_convocatorias') }}">Cancelar edición</a>{% endif %}</form></section>
+<div class="cards">{% for c in convocatorias %}<article class="publication-admin-card"><span>{{ c.estado }} · {{ c.area }}</span><h2>{{ c.titulo }}</h2><p>{{ c.inicio|replace('T',' ') }} — {{ c.fin|replace('T',' ') }}</p><p>{{ c.lugar }}</p><div class="actions"><a class="secondary-button" href="{{ url_for('admin_convocatorias',editar=c.id) }}">Editar</a>{{ delete('eliminar_convocatoria',c.id) }}</div></article>{% else %}<p>No hay convocatorias.</p>{% endfor %}</div>{% endblock %}

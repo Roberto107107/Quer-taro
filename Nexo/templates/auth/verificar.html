@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% from "_forms.html" import csrf with context %}
+{% block content %}<section class="editor"><h1>Verificar cuenta</h1>{% if valido %}
+<p>Confirma la verificación de tu cuenta para habilitar el acceso.</p><form method="post">{{ csrf() }}<button class="primary-button">Verificar mi cuenta</button></form>
+{% else %}<p>Este enlace no es válido o venció. Solicita uno nuevo a administración.</p>{% endif %}<a href="{{ url_for('login') }}">Ir al acceso</a></section>{% endblock %}

@@ -1,101 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>{% block title %}NEXO{% endblock %}</title>
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/styles.css') }}">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}NEXO | Comunicación institucional{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css', v='4') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/acuerdos.css', v='1') }}">
 </head>
-
-<body>
-
-    <header class="navbar">
-
-        <div class="nav-left">
-
-            <a href="{{ url_for('inicio') }}"
-               class="logo">
-
-                <div class="logo-icon">
-                    <i class="fa-solid fa-link"></i>
-                </div>
-
-                <div class="logo-text">
-                    <strong>NEXO</strong>
-                    <span>Comunicación Institucional</span>
-                </div>
-
-            </a>
-
-        </div>
-
-
-        <nav class="nav-center">
-
-            <a href="{{ url_for('inicio') }}">
-                <i class="fa-solid fa-house"></i>
-                <span>Inicio</span>
-            </a>
-
-            <a href="{{ url_for('convocatorias') }}">
-                <i class="fa-solid fa-bullhorn"></i>
-                <span>Convocatorias</span>
-            </a>
-
-            <a href="{{ url_for('mensajes') }}">
-                <i class="fa-solid fa-comments"></i>
-                <span>Mensajes</span>
-            </a>
-
-            <a href="{{ url_for('personas') }}">
-                <i class="fa-solid fa-users"></i>
-                <span>Personas</span>
-            </a>
-
-        </nav>
-
-
-        <div class="nav-right">
-
-            <button class="notification-button">
-                <i class="fa-regular fa-bell"></i>
-                <span class="notification-badge">3</span>
-            </button>
-
-            <a href="{{ url_for('perfil') }}"
-               class="profile-button">
-
-                <div class="profile-avatar">
-                    R
-                </div>
-
-                <span>Roberto</span>
-
-            </a>
-
-        </div>
-
-    </header>
-
-
-    <main class="main-container">
-
-        {% block content %}
-        {% endblock %}
-
-    </main>
-
-
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
-</body>
-</html> 
+{% set admin_panel = usuario and usuario.rol == 'admin' and request.endpoint and request.endpoint.startswith('admin') %}
+<body class="{{ 'admin-workspace' if admin_panel else ('user-workspace' if usuario else 'auth-workspace') }}">
+<a class="skip-link" href="#main-content">Saltar al contenido</a>
+{% if admin_panel %}
+<aside class="admin-sidebar">
+<a class="logo" href="{{ url_for('admin') }}"><span class="logo-icon">N</span><span class="logo-text"><strong>NEXO</strong><span>Comunicación institucional</span></span></a>
+<span class="sidebar-label">ADMINISTRACIÓN</span>
+<nav aria-label="Panel administrativo">
+{% for endpoint,label,mark in [('admin','Resumen','01'),('admin_publicaciones','Publicaciones','02'),('admin_convocatorias','Convocatorias','03'),('admin_usuarios','Usuarios','04'),('admin_acuerdos','Acuerdos','05')] %}
+<a href="{{ url_for(endpoint) }}" {% if request.endpoint == endpoint %}aria-current="page"{% endif %}><span class="nav-number" aria-hidden="true">{{ mark }}</span>{{ label }}</a>
+{% endfor %}
+<a href="{{ url_for('documentos') }}"><span class="nav-number" aria-hidden="true">06</span>Documentos</a>
+</nav>
+<div class="sidebar-bottom"><span>Portal institucional</span><a href="{{ url_for('inicio') }}">Ir al panel de usuario <span aria-hidden="true">↗</span></a></div>
+</aside>
+{% endif %}
+<header class="navbar">
+{% if admin_panel %}<div class="workspace-heading"><span>Espacio de trabajo</span><strong>Panel de administración</strong></div>{% else %}<a class="logo" href="{{ url_for('index') }}"><span class="logo-icon">N</span><span class="logo-text"><strong>NEXO</strong><span>Comunicación institucional</span></span></a>{% endif %}
+{% if usuario %}
+{% if not admin_panel %}
+<nav class="nav-center" aria-label="Principal">
+{% for endpoint, label in [('inicio','Inicio'),('convocatorias','Convocatorias'),('mensajes','Mensajes'),('acuerdos','Acuerdos'),('personas','Personas'),('documentos','Documentos')] %}
+<a href="{{ url_for(endpoint) }}" {% if request.endpoint == endpoint %}aria-current="page"{% endif %}>{{ label }}{% if endpoint == 'acuerdos' and acuerdos_pendientes %}<span class="nav-counter">{{ acuerdos_pendientes }}</span>{% endif %}{% if endpoint == 'mensajes' and sin_leer %} ({{ sin_leer }}){% endif %}</a>
+{% endfor %}
+{% if usuario.rol == 'admin' %}<a href="{{ url_for('admin') }}" {% if request.endpoint and request.endpoint.startswith('admin') %}aria-current="page"{% endif %}>Administración</a>{% endif %}
+</nav>
+{% endif %}
+<div class="nav-right"><a class="account-link" href="{{ url_for('perfil') }}"><span class="account-avatar" aria-hidden="true">{{ usuario.nombre[:1]|upper }}</span><span>{{ usuario.nombre }}<small>{{ 'Administrador' if usuario.rol == 'admin' else 'Mi cuenta' }}</small></span></a>
+<form method="post" action="{{ url_for('logout') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="secondary-button">Salir</button></form></div>
+{% endif %}
+</header>
+<main class="main-container" id="main-content" tabindex="-1">
+{% for category, message in get_flashed_messages(with_categories=true) %}<div class="notice {{ category }}" role="status">{{ message }}</div>{% endfor %}
+{% block content %}{% endblock %}
+</main>
+<script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+{% block scripts %}{% endblock %}
+</body></html>

@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.venv/
+Nexo/instance/
+.env
+.pytest_cache/
