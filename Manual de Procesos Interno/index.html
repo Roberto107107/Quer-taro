@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prontuario Digital | Concentradora</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         ENCABEZADO
+    =========================================== -->
+
+    <header class="header">
+
+        <div class="header-container">
+
+            <div class="institucion">
+
+ <div class="logo-header">
+    <img
+        src="assets/logos/logo.png"
+        alt="Dirección de Gobierno Digital e Innovación"
+    >
+</div>
+                <div>
+                    <p>Secretaría de Finanzas</p>
+                    <h2>Dirección de Gobierno Digital e Innovación</h2>
+                </div>
+
+            </div>
+
+            <div class="version">
+                Prontuario Digital · Versión 1.0
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         CONTENIDO PRINCIPAL
+    =========================================== -->
+
+    <main>
+
+
+        <!-- ======================================
+             PORTADA
+        ======================================= -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="etiqueta">
+                    CONSULTA INSTITUCIONAL
+                </span>
+
+                <h1>
+                    Prontuario Digital de la
+                    <span>Concentradora</span>
+                </h1>
+
+                <p>
+                    Herramienta de consulta rápida para los procedimientos,
+                    controles, formatos y conceptos relacionados con las
+                    actividades de la Concentradora.
+                </p>
+
+
+                <!-- ==================================
+                     BUSCADOR GLOBAL
+                =================================== -->
+
+                <div class="buscador">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="text"
+                        id="busqueda"
+                        placeholder="¿Qué necesitas consultar?"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        id="btnBuscar"
+                    >
+                        Buscar
+                    </button>
+
+                </div>
+
+
+                <!-- RESULTADOS DEL BUSCADOR -->
+
+                <div id="resultadosBusqueda"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             PROCEDIMIENTOS
+        ======================================= -->
+
+        <section class="contenedor">
+
+            <div class="titulo-seccion">
+
+                <span>
+                    PROCEDIMIENTOS
+                </span>
+
+                <h2>
+                    ¿Qué deseas consultar?
+                </h2>
+
+                <p>
+                    Accede rápidamente a los procedimientos internos
+                    documentados para la Concentradora.
+                </p>
+
+            </div>
+
+
+            <div class="grid-procesos">
+
+
+                <!-- ==================================
+                     COMPRAS
+                =================================== -->
+
+                <a
+                    href="paginas/compras.html"
+                    class="card"
+                >
+
+                    <div class="card-icon">
+                        🛒
+                    </div>
+
+                    <div class="card-content">
+
+                        <span class="numero">
+                            01
+                        </span>
+
+                        <h3>
+                            Compras
+                        </h3>
+
+                        <p>
+                            Gestión y seguimiento de requerimientos
+                            para la adquisición de bienes y servicios.
+                        </p>
+
+                        <span class="enlace">
+                            Consultar procedimiento →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- ==================================
+                     INVENTARIO
+                =================================== -->
+
+                <a
+                    href="paginas/inventario.html"
+                    class="card"
+                >
+
+                    <div class="card-icon">
+                        ▣
+                    </div>
+
+                    <div class="card-content">
+
+                        <span class="numero">
+                            02
+                        </span>
+
+                        <h3>
+                            Inventario
+                        </h3>
+
+                        <p>
+                            Recepción, control, registro y entrega
+                            de los bienes gestionados por la Concentradora.
+                        </p>
+
+                        <span class="enlace">
+                            Consultar procedimiento →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- ==================================
+                     DICTÁMENES TÉCNICOS
+                =================================== -->
+
+                <a
+                    href="paginas/dictamenes.html"
+                    class="card"
+                >
+
+                    <div class="card-icon">
+                        ✓
+                    </div>
+
+                    <div class="card-content">
+
+                        <span class="numero">
+                            03
+                        </span>
+
+                        <h3>
+                            Dictámenes Técnicos
+                        </h3>
+
+                        <p>
+                            Gestión, control y seguimiento documental
+                            de las solicitudes de Dictamen Técnico.
+                        </p>
+
+                        <span class="enlace">
+                            Consultar procedimiento →
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             CONSULTA RÁPIDA
+        ======================================= -->
+
+        <section class="consulta">
+
+            <div class="contenedor">
+
+                <div class="titulo-seccion">
+
+                    <span>
+                        CONSULTA RÁPIDA
+                    </span>
+
+                    <h2>
+                        Información complementaria
+                    </h2>
+
+                </div>
+
+
+                <div class="grid-consulta">
+
+
+                    <!-- NORMATIVIDAD -->
+
+                    <a
+                        href="paginas/normatividad.html"
+                        class="mini-card"
+                    >
+
+                        <div class="mini-icon">
+                            §
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Marco normativo
+                            </h3>
+
+                            <p>
+                                Disposiciones aplicables.
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- FORMATOS -->
+
+                    <a
+                        href="paginas/formatos.html"
+                        class="mini-card"
+                    >
+
+                        <div class="mini-icon">
+                            ▤
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Formatos y anexos
+                            </h3>
+
+                            <p>
+                                Documentación de apoyo.
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- GLOSARIO -->
+
+                    <a
+                        href="paginas/glosario.html"
+                        class="mini-card"
+                    >
+
+                        <div class="mini-icon">
+                            A
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Glosario
+                            </h3>
+
+                            <p>
+                                Conceptos y siglas.
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- DIAGRAMAS -->
+
+                    <a
+                        href="#diagramas"
+                        class="mini-card"
+                    >
+
+                        <div class="mini-icon">
+                            ↳
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Diagramas de flujo
+                            </h3>
+
+                            <p>
+                                Visualiza los procedimientos.
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             DIAGRAMAS DE FLUJO
+        ======================================= -->
+
+        <section
+            class="diagramas-inicio"
+            id="diagramas"
+        >
+
+            <div class="contenedor">
+
+                <!-- ENCABEZADO -->
+
+                <div class="titulo-seccion">
+
+                    <span>
+                        DIAGRAMAS DE FLUJO
+                    </span>
+
+                    <h2>
+                        Visualiza los procedimientos
+                    </h2>
+
+                    <p>
+                        Consulta la representación gráfica de los
+                        procedimientos internos de la Concentradora.
+                    </p>
+
+                </div>
+
+
+                <!-- TARJETAS DE DIAGRAMAS -->
+
+                <div class="grid-diagramas-inicio">
+
+
+                    <!-- ==============================
+                         DIAGRAMA DE COMPRAS
+                    =============================== -->
+
+                    <a
+                        href="paginas/compras.html#diagrama"
+                        class="diagrama-card-inicio"
+                    >
+
+                        <div class="diagrama-numero">
+                            01
+                        </div>
+
+
+                        <div class="diagrama-info">
+
+                            <span>
+                                COMPRAS
+                            </span>
+
+                            <h3>
+                                Gestión y Seguimiento de Compras
+                            </h3>
+
+                            <p>
+                                Consulta el flujo correspondiente
+                                a la gestión y seguimiento del
+                                procedimiento de Compras.
+                            </p>
+
+                        </div>
+
+
+                        <div class="diagrama-ir">
+                            →
+                        </div>
+
+                    </a>
+
+
+                    <!-- ==============================
+                         DIAGRAMA DE INVENTARIO
+                    =============================== -->
+
+                    <a
+                        href="paginas/inventario.html#diagrama"
+                        class="diagrama-card-inicio"
+                    >
+
+                        <div class="diagrama-numero">
+                            02
+                        </div>
+
+
+                        <div class="diagrama-info">
+
+                            <span>
+                                INVENTARIO
+                            </span>
+
+                            <h3>
+                                Recepción, Control y Entrega de Bienes
+                            </h3>
+
+                            <p>
+                                Consulta el flujo correspondiente
+                                a la recepción, control y entrega
+                                de los bienes.
+                            </p>
+
+                        </div>
+
+
+                        <div class="diagrama-ir">
+                            →
+                        </div>
+
+                    </a>
+
+
+                    <!-- ==============================
+                         DIAGRAMA DE DICTÁMENES
+                    =============================== -->
+
+                    <a
+                        href="paginas/dictamenes.html#diagrama"
+                        class="diagrama-card-inicio"
+                    >
+
+                        <div class="diagrama-numero">
+                            03
+                        </div>
+
+
+                        <div class="diagrama-info">
+
+                            <span>
+                                DICTÁMENES TÉCNICOS
+                            </span>
+
+                            <h3>
+                                Gestión y Seguimiento de Dictámenes Técnicos
+                            </h3>
+
+                            <p>
+                                Consulta el flujo correspondiente
+                                a la gestión y seguimiento de
+                                Dictámenes Técnicos.
+                            </p>
+
+                        </div>
+
+
+                        <div class="diagrama-ir">
+                            →
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         PIE DE PÁGINA
+    =========================================== -->
+
+    <footer>
+
+        <div class="contenedor footer-content">
+
+            <div>
+
+                <strong>
+                    Dirección de Gobierno Digital e Innovación
+                </strong>
+
+                <p>
+                    Secretaría de Finanzas ·
+                    Poder Ejecutivo del Estado de Querétaro
+                </p>
+
+            </div>
+
+
+            <div class="footer-version">
+                Prontuario Digital · 2026
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <script src="js/app.js"></script>
+
+    <!-- BUSCADOR GLOBAL -->
+    <script src="js/buscador.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Formatos y Anexos | Prontuario Digital
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/styles.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <header class="header">
+
+        <div class="header-container">
+
+            <a
+                href="../index.html"
+                class="institucion"
+            >
+
+                <div class="logo-placeholder">
+                    DGDI
+                </div>
+
+                <div>
+
+                    <p>
+                        Secretaría de Finanzas
+                    </p>
+
+                    <h2>
+                        Dirección de Gobierno Digital e Innovación
+                    </h2>
+
+                </div>
+
+            </a>
+
+
+            <div class="version">
+                Prontuario Digital · Versión 1.0
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         NAVEGACIÓN
+    =========================================== -->
+
+    <nav class="barra-navegacion">
+
+        <div class="nav-container">
+
+            <a href="../index.html">
+                ← Inicio
+            </a>
+
+            <span>/</span>
+
+            <strong>
+                Formatos y Anexos
+            </strong>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==========================================
+         CONTENIDO PRINCIPAL
+    =========================================== -->
+
+    <main class="pagina-documentos">
+
+
+        <!-- ENCABEZADO -->
+
+        <section class="documentos-header">
+
+            <span class="procedimiento-numero">
+                CONSULTA DOCUMENTAL
+            </span>
+
+            <h1>
+                Formatos y Anexos
+            </h1>
+
+            <p>
+                Consulta los formatos relacionados con los
+                procedimientos internos de la Concentradora.
+                Utiliza los filtros o el buscador para localizar
+                rápidamente la documentación correspondiente.
+            </p>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             BUSCADOR Y FILTROS
+        =========================================== -->
+
+        <section class="herramientas-documentos">
+
+
+            <!-- BUSCADOR -->
+
+            <div class="buscador-formatos">
+
+                <span>
+                    ⌕
+                </span>
+
+                <input
+                    type="text"
+                    id="buscarFormato"
+                    placeholder="Buscar formato..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+
+            <!-- FILTROS -->
+
+            <div class="filtros-formatos">
+
+                <button
+                    class="filtro-formato activo"
+                    data-filtro="todos"
+                >
+                    Todos
+                </button>
+
+
+                <button
+                    class="filtro-formato"
+                    data-filtro="compras"
+                >
+                    Compras
+                </button>
+
+
+                <button
+                    class="filtro-formato"
+                    data-filtro="inventario"
+                >
+                    Inventario
+                </button>
+
+
+                <button
+                    class="filtro-formato"
+                    data-filtro="dictamenes"
+                >
+                    Dictámenes Técnicos
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             CONTADOR
+        =========================================== -->
+
+        <div class="resultado-formatos">
+
+            <span id="contadorFormatos">
+                9 documentos disponibles
+            </span>
+
+        </div>
+
+
+
+        <!-- ==========================================
+             LISTA DE FORMATOS
+        =========================================== -->
+
+        <section
+            class="grid-formatos"
+            id="listaFormatos"
+        >
+
+
+            <!-- ======================================
+                 01 - SOLICITUD DE BIENES
+            ======================================= -->
+
+            <article
+                class="tarjeta-formato"
+                data-categoria="compras inventario"
+                data-nombre="solicitud de bienes dgdi"
+            >
+
+                <div class="formato-icono">
+                    PDF
+                </div>
+
+
+                <div class="formato-contenido">
+
+                    <div class="formato-etiquetas">
+
+                        <span>
+                            Compras
+                        </span>
+
+                        <span>
+                            Inventario
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Formato Solicitud de Bienes DGDI
+                    </h3>
+
+
+                    <p>
+                        Formato relacionado con la solicitud
+                        y gestión de bienes.
+                    </p>
+
+                </div>
+
+
+                <div class="formato-acciones">
+
+                    <a
+                        href="../documentos/formatos/FORMATO SOLICITUD DE BIENES DGDI v3.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-documento"
+                    >
+                        Ver formato →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 02 - RESGUARDO
+            ======================================= -->
+
+            <article
+                class="tarjeta-formato"
+                data-categoria="inventario"
+                data-nombre="formato de resguardo"
+            >
+
+                <div class="formato-icono">
+                    PDF
+                </div>
+
+
+                <div class="formato-contenido">
+
+                    <div class="formato-etiquetas">
+
+                        <span>
+                            Inventario
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Formato de Resguardo
+                    </h3>
+
+
+                    <p>
+                        Documento utilizado para registrar
+                        la asignación y responsabilidad
+                        correspondiente sobre los bienes.
+                    </p>
+
+                </div>
+
+
+                <div class="formato-acciones">
+
+                    <a
+                        href="../documentos/formatos/FORMATO DE RESGUARDO.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-documento"
+                    >
+                        Ver formato →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 03 - RESGUARDO PARCIAL
+            ======================================= -->
+
+            <article
+                class="tarjeta-formato"
+                data-categoria="inventario"
+                data-nombre="formato de resguardo parcial"
+            >
+
+                <div class="formato-icono">
+                    PDF
+                </div>
+
+
+                <div class="formato-contenido">
+
+                    <div class="formato-etiquetas">
+
+                        <span>
+                            Inventario
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Formato de Resguardo Parcial
+                    </h3>
+
+
+                    <p>
+                        Formato relacionado con el control
+                        parcial de bienes bajo resguardo.
+                    </p>
+
+                </div>
+
+
+                <div class="formato-acciones">
+
+                    <a
+                        href="../documentos/formatos/FORMATO DE RESGUARDO PARCIAL.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-documento"
+                    >
+                        Ver formato →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 04 - CAMBIO DE RESGUARDANTE
+            ======================================= -->
+
+            <article
+                class="tarjeta-formato"
+                data-categoria="inventario"
+                data-nombre="formato cambio de resguardante"
+            >
+
+                <div class="formato-icono">
+                    PDF
+                </div>
+
+
+                <div class="formato-contenido">
+
+                    <div class="formato-etiquetas">
+
+                        <span>
+                            Inventario
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Formato de Cambio de Resguardante
+                    </h3>
+
+
+                    <p>
+                        Documento relacionado con la actualización
+                        del responsable asignado a uno o más bienes.
+                    </p>
+
+                </div>
+
+
+                <div class="formato-acciones">
+
+                    <a
+                        href="../documentos/formatos/FORMATO DE CAMBIO DE RESGUARDANTE.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-documento"
+                    >
+                        Ver formato →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 05 - BAJA DE BIENES
+            ======================================= -->
+
+            <article
+                class="tarjeta-formato"
+                data-categoria="inventario"
+                data-nombre="formato baja de bienes dgdi"
+            >
+
+                <div class="formato-icono">
+                    PDF
+                </div>
+
+
+                <div class="formato-contenido">
+
+                    <div class="formato-etiquetas">
+
+                        <span>
+                            Inventario
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Formato Baja de Bienes DGDI
+                    </h3>
+
+
+                    <p>
+                        Formato asociado a la documentación
+                        correspondiente para la baja de bienes.
+                    </p>
+
+                </div>
+
+
+                <div class="formato-acciones">
+
+                    <a
+                        href="../documentos/formatos/FORMATO BAJA DE BIENES DGDI v3.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-documento"
+                    >
+                        Ver formato →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 06 - DICTAMEN DE BAJA
+            ======================================= -->
+
+            <article
+                class="tarjeta-formato"
+                data-categoria="dictamenes inventario"
+                data-nombre="solicitud dictamen baja equipos"
+            >
+
+                <div class="formato-icono">
+                    PDF
+                </div>
+
+
+                <div class="formato-contenido">
+
+                    <div class="formato-etiquetas">
+
+                        <span>
+                            Dictámenes Técnicos
+                        </span>
+
+                        <span>
+                            Inventario
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Solicitud de Dictamen de Baja de Equipos
+                    </h3>
+
+
+                    <p>
+                        Formato para la solicitud relacionada
+                        con el dictamen de baja de equipos.
+                    </p>
+
+                </div>
+
+
+                <div class="formato-acciones">
+
+                    <a
+                        href="../documentos/formatos/Formato solicitud de dictamen de baja equipos.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-documento"
+                    >
+                        Ver formato →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 07 - AUTORIZACIÓN DE PRESUPUESTO
+            ======================================= -->
+
+            <article
+                class="tarjeta-formato"
+                data-categoria="dictamenes compras"
+                data-nombre="solicitud dictamen autorizacion presupuesto"
+            >
+
+                <div class="formato-icono">
+                    PDF
+                </div>
+
+
+                <div class="formato-contenido">
+
+                    <div class="formato-etiquetas">
+
+                        <span>
+                            Dictámenes Técnicos
+                        </span>
+
+                        <span>
+                            Compras
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Solicitud de Dictamen de Autorización
+                        de Presupuesto
+                    </h3>
+
+
+                    <p>
+                        Formato asociado a la solicitud
+                        correspondiente de Dictamen Técnico.
+                    </p>
+
+                </div>
+
+
+                <div class="formato-acciones">
+
+                    <a
+                        href="../documentos/formatos/Formato de solicitud de dictamen autorizacion presupuesto.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-documento"
+                    >
+                        Ver formato →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 08 - ADQUISICIÓN EQUIPO DE CÓMPUTO
+            ======================================= -->
+
+            <article
+                class="tarjeta-formato"
+                data-categoria="compras dictamenes"
+                data-nombre="anexo unico adquisicion equipo de computo"
+            >
+
+                <div class="formato-icono">
+                    PDF
+                </div>
+
+
+                <div class="formato-contenido">
+
+                    <div class="formato-etiquetas">
+
+                        <span>
+                            Compras
+                        </span>
+
+                        <span>
+                            Dictámenes Técnicos
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Anexo Único para Adquisición
+                        de Equipo de Cómputo
+                    </h3>
+
+
+                    <p>
+                        Documento complementario relacionado
+                        con la adquisición de equipo de cómputo.
+                    </p>
+
+                </div>
+
+
+                <div class="formato-acciones">
+
+                    <a
+                        href="../documentos/formatos/Anexo Unico para Adquisicion de Equipo de Computo.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-documento"
+                    >
+                        Ver formato →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ======================================
+                 09 - ANEXO VOBO
+            ======================================= -->
+
+            <article
+                class="tarjeta-formato"
+                data-categoria="dictamenes"
+                data-nombre="formato anexo vobo visto bueno"
+            >
+
+                <div class="formato-icono">
+                    PDF
+                </div>
+
+
+                <div class="formato-contenido">
+
+                    <div class="formato-etiquetas">
+
+                        <span>
+                            Dictámenes Técnicos
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Formato Anexo de VoBo
+                    </h3>
+
+
+                    <p>
+                        Documento complementario relacionado
+                        con la validación o visto bueno
+                        correspondiente.
+                    </p>
+
+                </div>
+
+
+                <div class="formato-acciones">
+
+                    <a
+                        href="../documentos/formatos/Formato Anexo de Vobo.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-documento"
+                    >
+                        Ver formato →
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- ==========================================
+             SIN RESULTADOS
+        =========================================== -->
+
+        <div
+            id="sinFormatos"
+            class="sin-resultados"
+            style="display:none;"
+        >
+
+            <strong>
+                No se encontraron formatos
+            </strong>
+
+            <p>
+                Intenta realizar la búsqueda con otro término
+                o selecciona otra categoría.
+            </p>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+    <footer>
+
+        <div class="contenedor footer-content">
+
+            <div>
+
+                <strong>
+                    Dirección de Gobierno Digital e Innovación
+                </strong>
+
+                <p>
+                    Secretaría de Finanzas ·
+                    Poder Ejecutivo del Estado de Querétaro
+                </p>
+
+            </div>
+
+
+            <div class="footer-version">
+                Prontuario Digital · 2026
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <script src="../js/app.js"></script>
+
+    <script src="../js/formatos.js"></script>
+
+</body>
+
+</html>

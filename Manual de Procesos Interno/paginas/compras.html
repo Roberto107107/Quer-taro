@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Compras | Prontuario Digital</title>
+
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<div id="visorDiagrama" class="visor-diagrama">
+
+    <button
+        class="visor-cerrar"
+        onclick="cerrarDiagrama()"
+        aria-label="Cerrar diagrama"
+    >
+        ×
+    </button>
+
+    <div class="visor-contenido">
+
+        <img
+            id="imagenDiagramaAmpliada"
+            src=""
+            alt="Diagrama ampliado"
+        >
+
+    </div>
+
+</div>
+
+<body class="pagina-procedimiento">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+
+            <a href="../index.html" class="institucion">
+                <div class="logo-placeholder">DGDI</div>
+
+                <div>
+                    <p>Secretaría de Finanzas</p>
+                    <h2>Dirección de Gobierno Digital e Innovación</h2>
+                </div>
+            </a>
+
+            <div class="version">
+                Prontuario Digital · Versión 1.0
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="barra-navegacion">
+        <div class="nav-container">
+
+            <a href="../index.html">
+                ← Inicio
+            </a>
+
+            <span>/</span>
+
+            <strong>Compras</strong>
+
+        </div>
+    </nav>
+
+
+    <!-- CONTENIDO -->
+    <main class="layout-procedimiento">
+
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+
+            <span class="sidebar-label">
+                PROCEDIMIENTO
+            </span>
+
+            <h3>Compras</h3>
+
+            <nav>
+                <a href="#resumen" class="active">
+                    Resumen
+                </a>
+
+                <a href="#requisitos">
+                    Requisitos
+                </a>
+
+                <a href="#procedimiento">
+                    Procedimiento
+                </a>
+
+                <a href="#validaciones">
+                    Validaciones
+                </a>
+
+                <a href="#resultado">
+                    Resultado
+                </a>
+
+                <a href="#evidencias">
+                    Registros y evidencias
+                </a>
+
+                <a href="#diagrama">
+                    Diagrama de flujo
+                </a>
+            </nav>
+
+            <div class="sidebar-ayuda">
+                <span>Consulta rápida</span>
+
+                <p>
+                    Utiliza el menú para desplazarte directamente
+                    a cada sección del procedimiento.
+                </p>
+            </div>
+
+        </aside>
+
+
+        <!-- INFORMACIÓN -->
+        <article class="contenido-procedimiento">
+
+            <!-- ENCABEZADO -->
+            <section id="resumen" class="procedimiento-header">
+
+                <span class="procedimiento-numero">
+                    PROCEDIMIENTO 01
+                </span>
+
+                <h1>Gestión y seguimiento de Compras</h1>
+
+                <p class="descripcion-principal">
+                    Procedimiento para la recepción, análisis,
+                    integración, trámite y seguimiento de los
+                    requerimientos de adquisición de bienes y servicios
+                    gestionados por la Concentradora.
+                </p>
+
+
+                <div class="datos-procedimiento">
+
+                    <div>
+                        <span>Área</span>
+                        <strong>Compras</strong>
+                    </div>
+
+                    <div>
+                        <span>Responsable</span>
+                        <strong>Personal adscrito al área de Compras</strong>
+                    </div>
+
+                    <div>
+                        <span>Versión</span>
+                        <strong>1.0.0</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- OBJETIVO -->
+            <section class="bloque">
+
+                <div class="bloque-titulo">
+                    <span>01</span>
+                    <h2>Objetivo</h2>
+                </div>
+
+                <p>
+                    Establecer las actividades para la recepción,
+                    análisis, integración, trámite y seguimiento de los
+                    requerimientos de adquisición de bienes y servicios
+                    gestionados por la Concentradora, asegurando el
+                    control de la documentación y el seguimiento del
+                    procedimiento hasta las etapas posteriores a la
+                    adjudicación que correspondan.
+                </p>
+
+            </section>
+
+
+            <!-- PARTICIPANTES -->
+            <section class="bloque">
+
+                <div class="bloque-titulo">
+                    <span>02</span>
+                    <h2>Participantes</h2>
+                </div>
+
+                <div class="chips">
+
+                    <span>Área solicitante</span>
+                    <span>Concentradora</span>
+                    <span>Dirección de Adquisiciones</span>
+                    <span>Proveedor adjudicado</span>
+                    <span>Demás áreas involucradas</span>
+
+                </div>
+
+            </section>
+
+
+            <!-- REQUISITOS -->
+            <section id="requisitos" class="bloque">
+
+                <div class="bloque-titulo">
+                    <span>03</span>
+                    <h2>Requisitos para iniciar</h2>
+                </div>
+
+                <div class="alerta-info">
+
+                    <div class="alerta-icono">i</div>
+
+                    <div>
+                        <strong>Antes de iniciar el procedimiento</strong>
+
+                        <p>
+                            Deberá contarse con el requerimiento
+                            correspondiente y con la documentación
+                            necesaria para integrar el trámite de
+                            adquisición.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="requisitos-grid">
+
+                    <div class="requisito">
+                        <span>✓</span>
+
+                        <div>
+                            <strong>Requerimiento</strong>
+                            <p>
+                                Solicitud correspondiente para la
+                                adquisición del bien o servicio.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="requisito">
+                        <span>✓</span>
+
+                        <div>
+                            <strong>Documentación</strong>
+                            <p>
+                                Información necesaria para integrar
+                                el trámite de adquisición.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="requisito">
+                        <span>✓</span>
+
+                        <div>
+                            <strong>Disponibilidad presupuestal</strong>
+                            <p>
+                                Deberá encontrarse sustentada conforme
+                                a las disposiciones aplicables.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="requisito">
+                        <span>✓</span>
+
+                        <div>
+                            <strong>Clasificación del gasto</strong>
+                            <p>
+                                Deberá corresponder con la naturaleza
+                                de la adquisición.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PROCEDIMIENTO -->
+            <section id="procedimiento" class="bloque">
+
+                <div class="bloque-titulo">
+                    <span>04</span>
+
+                    <div>
+                        <h2>Procedimiento</h2>
+                        <p>
+                            Secuencia general para la gestión y
+                            seguimiento de una compra.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="timeline">
+
+                    <div class="paso">
+                        <div class="paso-numero">01</div>
+                        <div>
+                            <h3>Recepción del requerimiento</h3>
+                            <p>
+                                Se reciben los requerimientos de bienes
+                                o servicios correspondientes.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">02</div>
+                        <div>
+                            <h3>Análisis de información</h3>
+                            <p>
+                                El personal de Compras analiza la
+                                información recibida.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">03</div>
+                        <div>
+                            <h3>Verificación documental</h3>
+                            <p>
+                                Se verifica que la documentación
+                                necesaria para integrar el expediente
+                                se encuentre disponible.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso paso-decision">
+                        <div class="paso-numero">04</div>
+                        <div>
+                            <h3>¿Existe información faltante?</h3>
+                            <p>
+                                Cuando se identifique información
+                                faltante o inconsistente, se solicita
+                                su complemento o corrección al área
+                                correspondiente.
+                            </p>
+
+                            <span class="estado-observacion">
+                                Punto de validación
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">05</div>
+                        <div>
+                            <h3>Preparación de solicitud</h3>
+                            <p>
+                                Una vez integrada la documentación,
+                                se prepara la solicitud de compra.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">06</div>
+                        <div>
+                            <h3>Presentación del expediente</h3>
+                            <p>
+                                La solicitud y expediente se presentan
+                                ante la instancia competente para
+                                continuar con el procedimiento de
+                                adquisición.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">07</div>
+                        <div>
+                            <h3>Seguimiento de observaciones</h3>
+                            <p>
+                                Se realiza el seguimiento de las
+                                observaciones administrativas o
+                                técnicas que puedan generarse.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">08</div>
+                        <div>
+                            <h3>Evaluación</h3>
+                            <p>
+                                Cuando corresponda, se participa en las
+                                etapas de evaluación técnica y se da
+                                seguimiento a la evaluación económica.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">09</div>
+                        <div>
+                            <h3>Seguimiento hasta el fallo</h3>
+                            <p>
+                                Se mantiene seguimiento al procedimiento
+                                hasta la emisión del fallo correspondiente.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">10</div>
+                        <div>
+                            <h3>Orden de compra</h3>
+                            <p>
+                                Una vez adjudicada la adquisición,
+                                se revisa y da seguimiento a la orden
+                                de compra.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">11</div>
+                        <div>
+                            <h3>Comunicación con proveedor</h3>
+                            <p>
+                                Se establece comunicación con el proveedor
+                                adjudicado para coordinar las actividades
+                                posteriores correspondientes.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">12</div>
+                        <div>
+                            <h3>Seguimiento de entrega</h3>
+                            <p>
+                                Se da seguimiento a la entrega de los
+                                bienes o prestación de los servicios.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">13</div>
+                        <div>
+                            <h3>Documentación para pago</h3>
+                            <p>
+                                Cuando corresponda, se integra la
+                                documentación necesaria para continuar
+                                con el trámite de pago.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">14</div>
+                        <div>
+                            <h3>Control documental</h3>
+                            <p>
+                                Se mantiene el control documental del
+                                expediente generado durante el procedimiento.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="paso">
+                        <div class="paso-numero">15</div>
+                        <div>
+                            <h3>Garantías</h3>
+                            <p>
+                                Cuando resulte aplicable, se realiza el
+                                seguimiento correspondiente a garantías
+                                y su liberación.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- VALIDACIONES -->
+            <section id="validaciones" class="bloque">
+
+                <div class="bloque-titulo">
+                    <span>05</span>
+                    <h2>Validaciones</h2>
+                </div>
+
+
+                <div class="validaciones">
+
+                    <div>
+                        <span>✓</span>
+                        Verificar que el requerimiento se encuentre
+                        debidamente integrado.
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Comprobar que la documentación corresponda
+                        al procedimiento de adquisición.
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Mantener seguimiento de las observaciones
+                        administrativas o técnicas.
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Mantener actualizado el control documental
+                        del expediente.
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESULTADO -->
+            <section id="resultado" class="bloque">
+
+                <div class="bloque-titulo">
+                    <span>06</span>
+                    <h2>Resultado esperado</h2>
+                </div>
+
+                <div class="resultado-box">
+
+                    <span class="resultado-check">✓</span>
+
+                    <div>
+                        <strong>Procedimiento gestionado y documentado</strong>
+
+                        <p>
+                            Adquisición gestionada y documentada conforme
+                            a las actividades que correspondan a la
+                            Concentradora, manteniendo evidencia del
+                            seguimiento realizado.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- EVIDENCIAS -->
+            <section id="evidencias" class="bloque">
+
+                <div class="bloque-titulo">
+                    <span>07</span>
+                    <h2>Registros y evidencias</h2>
+                </div>
+
+                <div class="documentos-grid">
+
+                    <div>▤ Requerimiento</div>
+                    <div>▤ Expediente de adquisición</div>
+                    <div>▤ Solicitud de compra</div>
+                    <div>▤ Observaciones</div>
+                    <div>▤ Documentación de evaluación</div>
+                    <div>▤ Fallo</div>
+                    <div>▤ Orden de compra</div>
+                    <div>▤ Comunicaciones con proveedor</div>
+                    <div>▤ Documentación de recepción</div>
+                    <div>▤ Documentación para pago</div>
+                    <div>▤ Garantías, cuando correspondan</div>
+
+                </div>
+
+            </section>
+
+
+            <!-- DIAGRAMA -->
+<div class="diagrama-container">
+
+    <div class="diagrama-header">
+        <div>
+            <span>DIAGRAMA DEL PROCEDIMIENTO</span>
+            <h3>Gestión y Seguimiento de Compras</h3>
+        </div>
+
+        <button
+            class="btn-ampliar"
+            onclick="abrirDiagrama('../assets/diagramas/compras.png')"
+        >
+            ⛶ Ampliar
+        </button>
+    </div>
+
+    <div
+        class="diagrama-imagen"
+        onclick="abrirDiagrama('../assets/diagramas/compras.png')"
+    >
+        <img
+            src="../assets/diagramas/compras.png"
+            alt="Diagrama de flujo de Gestión y Seguimiento de Compras"
+        >
+    </div>
+
+    <p class="diagrama-nota">
+        Selecciona el diagrama para visualizarlo en tamaño completo.
+    </p>
+
+</div>
+
+            </section>
+
+        </article>
+
+    </main>
+
+
+    <footer>
+
+        <div class="contenedor footer-content">
+
+            <div>
+                <strong>
+                    Dirección de Gobierno Digital e Innovación
+                </strong>
+
+                <p>
+                    Secretaría de Finanzas ·
+                    Poder Ejecutivo del Estado de Querétaro
+                </p>
+            </div>
+
+            <div class="footer-version">
+                Prontuario Digital · 2026
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="../js/app.js"></script>
+
+</body>
+</html>
