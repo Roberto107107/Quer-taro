@@ -1,7 +1,20 @@
-﻿{% extends "base.html" %}{% block content %}
-<div class="user-welcome"><span class="eyebrow">TU ESPACIO INSTITUCIONAL</span><h1>Hola, {{ usuario.nombre }}</h1><p>La información que necesitas, en un solo lugar.</p><span class="welcome-label">Comunidad NEXO</span></div>
-<div class="quick-links"><a href="{{ url_for('acuerdos') }}">Mis acuerdos{% if acuerdos_pendientes %} · {{ acuerdos_pendientes }} por aceptar{% endif %}</a><a href="{{ url_for('convocatorias') }}">Ver convocatorias</a><a href="{{ url_for('mensajes') }}">Mis mensajes{% if sin_leer %} ({{ sin_leer }} sin leer){% endif %}</a><a href="{{ url_for('documentos') }}">Documentos</a></div>
-<div class="feed-heading"><div><span class="eyebrow">AL DÍA</span><h2>Actualidad institucional</h2></div><span>Avisos y comunicados</span></div>
-<section class="cards">{% for p in publicaciones %}<article class="publication-admin-card"><span class="publication-type">{{ p.tipo }}</span><h2>{{ p.titulo }}</h2><p class="preserve">{{ p.contenido }}</p><small>{{ p.fecha }} · {{ p.autor }}</small></article>
-{% else %}<p class="empty-state">Todavía no hay publicaciones vigentes.</p>{% endfor %}</section>{% endblock %}
-
+{% extends "base.html" %}{% from "_forms.html" import csrf with context %}{% block content %}
+<div class="home-feed-design">
+<header class="home-masthead"><div class="home-masthead-copy"><span class="home-kicker"><span aria-hidden="true"></span> TU ESPACIO EN NEXO</span><p class="home-hello">Hola, {{ usuario.nombre }}.</p><h1>Conecta con lo que<br><span>pasa en tu comunidad.</span></h1><p class="home-intro">Ideas, oportunidades y novedades que nos acercan.</p><a class="home-jump" href="#novedades">Explorar novedades <span aria-hidden="true">↓</span></a></div><div class="home-art" aria-hidden="true"><div class="home-orbit"></div><div class="home-art-tile tile-back"></div><div class="home-art-tile tile-front"><img class="art-institution-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="" width="110" height="110"><span class="art-line"></span><span class="art-line short"></span><div class="art-dots"><i></i><i></i><i></i></div></div><span class="art-spark">✦</span></div></header>
+<div class="home-feed-label" id="novedades"><div><span class="home-kicker">AL DÍA</span><h2>Lo más reciente</h2></div><span class="home-order">De lo nuevo a lo anterior</span></div>
+<section class="institutional-feed" aria-label="Novedades institucionales">
+{% for p in novedades %}<article class="card publication-admin-card" id="{{ p.clase }}-{{ p.id }}">
+<div class="home-post-top"><div class="feed-post-author"><span class="account-avatar" aria-hidden="true">{{ p.autor[:1]|upper }}</span><div><strong>{{ p.autor }}</strong><small>{{ p.fecha }}</small></div></div><span class="home-content-label">{{ p.tipo }}</span></div>
+<h2>{{ p.titulo }}</h2>
+{% if p.imagen %}<figure class="feed-image-frame"><img class="publication-image" src="{{ url_for('imagen_contenido',tipo=p.clase,record_id=p.id) }}" alt="Imagen de {{ p.titulo }}" loading="lazy"><figcaption><a class="image-expand" href="{{ url_for('imagen_contenido',tipo=p.clase,record_id=p.id) }}" data-expand-image aria-label="Ampliar imagen: {{ p.titulo }}"><span aria-hidden="true">&#x2922;</span> Ampliar imagen</a></figcaption></figure>{% endif %}
+{% if p.contenido %}<p class="preserve">{{ p.contenido }}</p>{% endif %}
+{% if p.clase == 'convocatoria' %}<p class="call-schedule"><strong>{{ p.area }} · {{ p.lugar }}</strong><br>{{ p.inicio|replace('T',' ') }} — {{ p.fin|replace('T',' ') }} (hora local)</p>{% endif %}
+{% if p.clase == 'documento' %}<a class="feed-document" href="{{ url_for('descargar_documento',record_id=p.id) }}">📄 {{ p.nombre }} <span>Descargar archivo ↓</span></a>{% endif %}
+<footer class="home-post-footer">{% if p.clase == 'convocatoria' %}<div class="application-action">{% if p.postulado %}<span class="badge {{ 'text-bg-success' if p.estado_postulacion == 'aceptada' else 'text-bg-danger' if p.estado_postulacion == 'rechazada' else 'text-bg-secondary' }}" role="status">{% if p.estado_postulacion == 'pendiente' %}Postulación registrada: pendiente de revisión{% else %}Postulación {{ p.estado_postulacion }}{% endif %}</span>{% else %}<form method="post" action="{{ url_for('postular_convocatoria',record_id=p.id) }}">{{ csrf() }}<button class="btn btn-primary" aria-label="Postularme a {{ p.titulo }}">Postularme</button></form>{% endif %}</div>{% endif %}<div class="acknowledgment">{% if p.enterado %}<span class="acknowledged" role="status">✓ Enterado</span>{% else %}<form method="post" action="{{ url_for('enterado',tipo=p.clase,record_id=p.id) }}">{{ csrf() }}<button class="btn btn-outline-primary" aria-label="Confirmar enterado: {{ p.titulo }}">✓ Enterado</button></form>{% endif %}</div>
+</footer></article>{% else %}<p class="empty-state">Todavía no hay novedades publicadas.</p>{% endfor %}
+</section>
+</div>
+<dialog class="image-viewer" id="image-viewer" aria-labelledby="image-viewer-title">
+<div class="image-viewer-toolbar"><h2 id="image-viewer-title">Imagen completa</h2><button type="button" class="btn btn-outline-secondary" data-close-image autofocus>Cerrar <span aria-hidden="true">&times;</span></button></div>
+<img class="image-viewer-full" alt="">
+</dialog>{% endblock %}

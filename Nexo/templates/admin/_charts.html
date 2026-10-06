@@ -1,0 +1,14 @@
+{% macro bars(title, rows, description, chart_id) %}
+<section class="card admin-panel analytics-chart" aria-labelledby="{{ chart_id }}">
+<h2 id="{{ chart_id }}">{{ title }}</h2><p class="analytics-caption">{{ description }}</p>
+{% set maximum = ([1] + (rows|map(attribute='value')|list))|max %}
+<svg class="analytics-bars" viewBox="0 0 540 {{ rows|length * 43 }}" role="img" aria-label="{{ title }}">
+<title>{{ title }}</title><desc>{% for row in rows %}{{ row.label }}: {{ row.value }}. {% endfor %}</desc>
+{% for row in rows %}<text x="0" y="{{ loop.index0 * 43 + 16 }}" class="analytics-svg-label">{{ row.label }}</text>
+<rect x="240" y="{{ loop.index0 * 43 + 2 }}" width="250" height="22" rx="5" fill="#edf3fc"/>
+<rect x="240" y="{{ loop.index0 * 43 + 2 }}" width="{{ row.value / maximum * 250 }}" height="22" rx="5" fill="#3974be"/>
+<text x="535" y="{{ loop.index0 * 43 + 18 }}" text-anchor="end" class="analytics-svg-value">{{ row.value }}</text>{% endfor %}
+</svg>
+{% if rows|sum(attribute='value') == 0 %}<p class="analytics-caption">Sin registros para esta gráfica.</p>{% endif %}
+</section>
+{% endmacro %}

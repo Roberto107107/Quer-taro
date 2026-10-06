@@ -26,9 +26,14 @@ class AgreementTest(unittest.TestCase):
         self.temp.cleanup()
 
     def signin(self, user_id):
+        with self.app.test_request_context():
+            from app.security import start_session
+            from flask import session as auth_session
+            start_session(user_id)
+            credentials = dict(auth_session)
         with self.client.session_transaction() as session:
             session.clear()
-            session['usuario_id'] = user_id
+            session.update(credentials)
             session['csrf'] = 'test-token'
 
     def post(self, url, values=None):
@@ -47,15 +52,51 @@ class AgreementTest(unittest.TestCase):
         self.assertIn(b'nav-counter', self.client.get('/acuerdos').data)
         for state in ('pendiente', 'en_proceso'):
             self.assertEqual(self.post('/acuerdos/1', {'estado': state}).status_code, 302)
+        self.assertEqual(self.post('/acuerdos/1', {'estado': 'completado', 'nota': 'No autorizado'}).status_code, 403)
+        self.assertEqual(self.post('/acuerdos/1', {'estado': 'entregado'}).status_code, 200)
+        self.assertEqual(self.post('/acuerdos/1', {'estado': 'entregado', 'nota': 'Resultado entregado'}).status_code, 302)
+        self.signin(self.creator)
         self.assertEqual(self.post('/acuerdos/1', {'estado': 'completado'}).status_code, 200)
-        self.assertEqual(self.post('/acuerdos/1', {'estado': 'completado', 'nota': 'Resultado entregado'}).status_code, 302)
+        self.assertEqual(self.post('/acuerdos/1', {'estado': 'completado', 'nota': 'Resultado verificado'}).status_code, 302)
         self.assertEqual(self.post('/acuerdos/1', {'estado': 'pendiente'}).status_code, 403)
         with self.app.app_context():
             self.assertEqual(get_db().execute('SELECT estado FROM acuerdos').fetchone()[0], 'completado')
-            self.assertEqual(get_db().execute('SELECT count(*) FROM acuerdo_historial').fetchone()[0], 4)
+            self.assertEqual(get_db().execute('SELECT count(*) FROM acuerdo_historial').fetchone()[0], 5)
+            self.assertEqual(get_db().execute('SELECT validado_por FROM acuerdos').fetchone()[0], self.creator)
         detail = self.client.get('/acuerdos/1')
         self.assertEqual(detail.status_code, 200)
         self.assertIn(b'Resultado entregado', detail.data)
+
+    def test_feedback_after_completion_is_private_and_persistent(self):
+        self.create()
+        values = {'accion': 'retroalimentacion', 'retroalimentacion': 'Buen resultado <script>alert(1)</script>'}
+        self.assertEqual(self.post('/acuerdos/1', values).status_code, 409)
+        self.signin(self.owner)
+        self.assertIn(b'Aceptar acuerdo', self.client.get('/acuerdos/1').data)
+        for state in ('pendiente', 'en_proceso', 'entregado'):
+            self.assertEqual(self.post('/acuerdos/1', {'estado': state, 'nota': 'Trabajo entregado'}).status_code, 302)
+        self.assertEqual(self.post('/acuerdos/1', values).status_code, 403)
+        self.signin(self.creator)
+        self.assertEqual(self.post('/acuerdos/1', {'estado': 'completado', 'nota': 'Cumplimiento confirmado'}).status_code, 302)
+        self.assertIn('Enviar retroalimentación'.encode(), self.client.get('/acuerdos/1').data)
+        self.assertEqual(self.client.post('/acuerdos/1', data=values).status_code, 400)
+        for invalid in ('   ', 'x' * 5001):
+            self.assertEqual(self.post('/acuerdos/1', {**values, 'retroalimentacion': invalid}).status_code, 200)
+        self.assertEqual(self.post('/acuerdos/1', values).status_code, 302)
+        second = create_app(dict(self.app.config))
+        with second.app_context():
+            row = get_db().execute("SELECT * FROM acuerdo_historial WHERE estado='retroalimentacion'").fetchone()
+            self.assertEqual(row['actor_id'], self.creator)
+            self.assertEqual(row['nota'], values['retroalimentacion'])
+            self.assertEqual(get_db().execute('SELECT estado FROM acuerdos').fetchone()[0], 'completado')
+        self.signin(self.owner)
+        detail = self.client.get('/acuerdos/1').data
+        self.assertIn(b'Buen resultado &lt;script&gt;', detail)
+        self.assertNotIn(b'<script>alert(1)</script>', detail)
+        self.assertNotIn('Enviar retroalimentación'.encode(), detail)
+        self.signin(self.admin)
+        self.assertEqual(self.client.get('/acuerdos/1').status_code, 404)
+        self.assertEqual(self.post('/acuerdos/1', values).status_code, 404)
 
     def test_privacy_including_nonparticipant_admin(self):
         self.create()

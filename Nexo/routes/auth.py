@@ -1,31 +1,32 @@
-import secrets
 import sqlite3
-from flask import flash, g, redirect, render_template, request, session, url_for, current_app
+from flask import flash, g, redirect, render_template, request, url_for, current_app
 from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from werkzeug.security import check_password_hash
 from app import get_db
 from app.usuario import create_user, login_required
+from app.security import start_session, end_session
 
 def register(app):
     @app.route("/")
     def index():
-        return redirect(url_for("inicio" if g.usuario else "login"))
+        return redirect(url_for(('admin' if g.usuario['rol'] == 'admin' else 'inicio') if g.usuario else 'login'))
 
     @app.route("/login", methods=["GET", "POST"])
     def login():
         if g.usuario:
-            return redirect(url_for("inicio"))
+            return redirect(url_for('admin' if g.usuario['rol'] == 'admin' else 'inicio'))
         if request.method == "POST":
             user = get_db().execute("SELECT * FROM usuarios WHERE correo=?",
                                    (request.form.get("correo", "").strip().lower(),)).fetchone()
-            if user and user["activo"] and check_password_hash(user["password"], request.form.get("password", "")):
+            password = request.form.get('password', '')
+            if user and user["activo"] and 10 <= len(password) <= 256 and check_password_hash(user["password"], password):
                 if not user["verificado"]:
                     flash("Tu cuenta está pendiente de verificación. Contacta a administración.", "error")
                 else:
-                    session.clear()
-                    session["usuario_id"] = user["id"]
-                    session["csrf"] = secrets.token_hex(32)
-                    return redirect(url_for("inicio"))
+                    start_session(user['id'])
+                    from app.seguimiento import notify_due
+                    notify_due(user['id'])
+                    return redirect(url_for('admin' if user['rol'] == 'admin' else 'inicio'))
             else:
                 flash("Correo o contraseña incorrectos, o cuenta desactivada.", "error")
         return render_template("auth/login.html")
@@ -50,7 +51,7 @@ def register(app):
     @app.post("/logout")
     @login_required
     def logout():
-        session.clear()
+        end_session()
         return redirect(url_for("login"))
 
     @app.route("/verificar/<token>", methods=["GET", "POST"])

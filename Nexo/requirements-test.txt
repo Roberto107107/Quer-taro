@@ -1,0 +1,2 @@
+-r requirements-production.txt
+pypdf==6.19.0

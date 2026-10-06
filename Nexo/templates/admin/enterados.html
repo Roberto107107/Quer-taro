@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-header"><h1>Enterados</h1><a href="{{ url_for(volver) }}">← Volver</a></div>
+<section class="card editor">
+<h2>{{ titulo }}</h2>
+<p><strong>{{ enterados|length }}</strong> usuarios confirmaron «Enterado». Esta lista registra confirmaciones, no visitas automáticas.</p>
+{% if enterados %}<div class="table-responsive"><table class="table align-middle">
+<thead><tr><th scope="col">Usuario</th><th scope="col">Correo</th><th scope="col">Área</th><th scope="col">Confirmación (UTC)</th></tr></thead>
+<tbody>{% for u in enterados %}<tr><td>{{ u.nombre }} {{ u.apellidos }}</td><td>{{ u.correo }}</td><td>{{ u.area or 'Sin área' }}</td><td>{{ u.confirmado|replace('T',' ') }}</td></tr>{% endfor %}</tbody>
+</table></div>{% else %}<p class="empty-state">Todavía nadie ha confirmado que está enterado.</p>{% endif %}
+</section>{% endblock %}

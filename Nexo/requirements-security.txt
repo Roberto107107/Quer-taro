@@ -1,0 +1,4 @@
+# Optional audit/browser tools; not application runtime dependencies.
+pip-audit==2.10.1
+bandit==1.9.4
+playwright==1.63.0

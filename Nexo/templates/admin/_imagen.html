@@ -1,0 +1,10 @@
+<div class="form-group mb-3">
+<label for="imagen">Imagen de la publicación</label>
+<input class="form-control" type="file" name="imagen" id="imagen" accept="image/jpeg,image/png,image/webp" aria-describedby="imagen-ayuda">
+<small id="imagen-ayuda">JPG, PNG o WebP. Máximo 5 MB y 20 megapíxeles. La imagen se adapta al marco y se muestra completa, sin recortes. Para aprovechar mejor el espacio, utiliza una imagen horizontal.</small>
+{% if item and item.imagen %}
+<img class="publication-image image-editor" src="{{ url_for('imagen_contenido',tipo=tipo_imagen,record_id=item.id) }}" alt="Imagen actual de {{ item.titulo }}">
+<label class="check"><input class="form-check-input" type="checkbox" name="quitar_imagen" value="1"> Quitar imagen actual</label>
+{% endif %}
+<img id="imagen-preview" class="publication-image image-editor" alt="Vista previa de la imagen seleccionada" hidden>
+</div>

@@ -1,11 +1,41 @@
-{% extends "base.html" %}{% block content %}
+{% extends "base.html" %}{% from 'admin/_charts.html' import bars %}{% block content %}
 <div class="admin-page"><div class="page-header admin-page-header"><div><span class="admin-badge">Administración</span><h1>Panel administrativo</h1><p>Gestiona la información y comunicación institucional de NEXO.</p></div><span id="adminCurrentDate"></span></div>
+<h2 class="mt-4">Panorama actual</h2>
 <section class="admin-stats-grid">{% for key,label,color in [('usuarios','Usuarios registrados','blue'),('publicaciones','Publicaciones','purple'),('convocatorias','Convocatorias vigentes','green'),('mensajes','Mensajes hoy (UTC)','orange')] %}
-<div class="admin-stat-card"><div class="admin-stat-info"><span>{{ label }}</span><strong>{{ stats[key] }}</strong></div></div>{% endfor %}</section>
+<div class="card admin-stat-card"><div class="admin-stat-info"><span>{{ label }}</span><strong>{{ stats[key] }}</strong></div></div>{% endfor %}</section>
+<section class="card admin-panel analytics-controls">
+<div><span class="eyebrow">ESTADÍSTICAS Y REPORTES</span><h2>Actividad de la institución</h2><p>Consulta un periodo y descarga su resumen en PDF.</p></div>
+<form method="get" action="{{ url_for('admin') }}" class="row g-3 align-items-end">
+<div class="col-md-3"><label class="form-label" for="admin-periodo">Periodo</label><select class="form-select" id="admin-periodo" name="periodo">{% for value,label in [('semana','Semanal'),('mes','Mensual'),('anio','Anual')] %}<option value="{{ value }}" {% if analytics.period == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div>
+<div class="col-md-3"><label class="form-label" for="admin-fecha">Fecha dentro del periodo</label><input class="form-control" type="date" id="admin-fecha" name="fecha" value="{{ report_reference }}" required></div>
+<div class="col-md-6 d-flex gap-2 flex-wrap"><button class="btn btn-primary">Ver estadísticas</button><button class="btn btn-outline-primary" formaction="{{ url_for('admin_reporte') }}">Descargar PDF</button></div>
+</form>
+<p class="analytics-period">{{ analytics.period_label }} · {{ analytics.start.strftime('%d/%m/%Y') }} — {{ analytics.last.strftime('%d/%m/%Y') }} · UTC</p>
+</section>
+<div class="analytics-kpis">{% for row in analytics.metrics %}<article class="card analytics-kpi"><span>{{ row.label }}</span><strong>{{ row.value }}</strong><small>En el periodo seleccionado</small></article>{% endfor %}</div>
+<div class="analytics-grid">
+{{ bars('Actividad del periodo', analytics.metrics, 'Publicaciones creadas incluye borradores. Enterados son confirmaciones, no visitas.', 'actividad-grafica') }}
+{{ bars('Estado de las postulaciones', analytics.applications, 'Estado actual de las postulaciones recibidas en el periodo seleccionado.', 'postulaciones-grafica') }}
+</div>
+<section class="card admin-panel analytics-trend"><h2>Acuerdos completados en el tiempo</h2><p class="analytics-caption">Fecha de finalización en UTC. {{ 'Agrupados por mes.' if analytics.period == 'anio' else 'Agrupados por día.' }}</p>
+{% set top = ([1] + (analytics.timeline|map(attribute='value')|list))|max %}
+<div class="analytics-scroll"><svg class="analytics-timeline" viewBox="0 0 {{ analytics.timeline|length * 40 + 20 }} 200" role="img" aria-label="Evolución de acuerdos completados">
+<title>Acuerdos completados</title><desc>{% for row in analytics.timeline %}{{ row.label }}: {{ row.value }}. {% endfor %}</desc>
+<line x1="5" y1="155" x2="{{ analytics.timeline|length * 40 + 10 }}" y2="155" stroke="#d7e2f0"/>
+{% for row in analytics.timeline %}<rect x="{{ loop.index0 * 40 + 10 }}" y="{{ 155 - row.value / top * 120 }}" width="24" height="{{ row.value / top * 120 }}" rx="3" fill="#3974be"/>
+<text x="{{ loop.index0 * 40 + 22 }}" y="{{ 145 - row.value / top * 120 }}" text-anchor="middle" class="analytics-svg-value">{{ row.value }}</text>
+<text x="{{ loop.index0 * 40 + 22 }}" y="175" text-anchor="middle" class="analytics-date">{{ row.label }}</text>{% endfor %}</svg></div>
+<details><summary>Ver datos de la gráfica</summary><div class="table-responsive"><table class="table table-sm"><thead><tr><th>Fecha (UTC)</th><th>Acuerdos completados</th></tr></thead><tbody>{% for row in analytics.timeline %}<tr><td>{{ row.label }}</td><td>{{ row.value }}</td></tr>{% endfor %}</tbody></table></div></details>
+</section>
+<div class="analytics-grid">
+{{ bars('Acuerdos: situación actual', analytics.states, 'Todos los acuerdos conservados, independientemente del periodo seleccionado.', 'estados-grafica') }}
+<section class="card admin-panel"><h2>Indicadores de seguimiento actuales</h2><p class="analytics-caption">Situación al consultar; no representa el estado de un periodo pasado.</p><dl class="analytics-followup">{% for row in analytics.snapshot %}<div><dt>{{ row.label }}</dt><dd>{{ row.value }}</dd></div>{% endfor %}</dl></section>
+</div>
+<p class="analytics-caption">Se muestran únicamente cifras agregadas. El archivado conserva los registros y sus totales históricos.</p>
 <section class="admin-section"><h2>Acciones rápidas</h2><div class="admin-actions-grid">
 {% for endpoint,title,description in [('admin_acuerdos','Acuerdos','Seguimiento de compromisos y avances.'),('admin_publicaciones','Publicaciones','Crear y editar avisos y comunicados.'),('admin_convocatorias','Convocatorias','Gestionar fechas y contenido.'),('admin_usuarios','Usuarios','Verificar cuentas y administrar permisos.'),('documentos','Documentos','Publicar documentos institucionales.')] %}
 <a class="admin-action-card" href="{{ url_for(endpoint) }}"><div><strong>{{ title }}</strong><span>{{ description }}</span></div></a>{% endfor %}</div></section>
-<div class="admin-content-grid"><section class="admin-panel"><div class="admin-panel-header"><h2>Publicaciones recientes</h2><a href="{{ url_for('admin_publicaciones') }}">Ver todas</a></div>
+<div class="admin-content-grid"><section class="card admin-panel"><div class="admin-panel-header"><h2>Publicaciones recientes</h2><a href="{{ url_for('admin_publicaciones') }}">Ver todas</a></div>
 {% for p in publicaciones %}<div class="admin-publication"><div class="publication-info"><strong>{{ p.titulo }}</strong><span>{{ p.fecha }} · {{ 'Publicada' if p.estado == 'published' else 'Borrador' }}</span></div></div>{% else %}<p>No hay publicaciones.</p>{% endfor %}</section>
-<section class="admin-panel"><div class="admin-panel-header"><h2>Convocatorias</h2><a href="{{ url_for('admin_convocatorias') }}">Gestionar</a></div>
+<section class="card admin-panel"><div class="admin-panel-header"><h2>Convocatorias</h2><a href="{{ url_for('admin_convocatorias') }}">Gestionar</a></div>
 {% for c in convocatorias %}<div class="admin-publication"><div class="publication-info"><strong>{{ c.titulo }}</strong><span>{{ c.inicio|replace('T',' ') }} · {{ c.estado }}</span></div></div>{% else %}<p>No hay convocatorias.</p>{% endfor %}</section></div></div>{% endblock %}

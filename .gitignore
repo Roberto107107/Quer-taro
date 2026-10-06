@@ -3,4 +3,10 @@ __pycache__/
 .venv/
 Nexo/instance/
 .env
+.env.*
+*.key
+*.pem
+*.sqlite
+*.sqlite3
+*.db
 .pytest_cache/

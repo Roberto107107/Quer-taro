@@ -1,0 +1,63 @@
+/* Home composition. Kept separate from administrative and agreement screens. */
+.home-feed-design { max-width:920px; margin:auto; --home-ink:#18253c; --home-accent:#173363; }
+.home-masthead { position:relative; display:grid; grid-template-columns:1fr 230px; gap:12px; align-items:center; padding:40px; overflow:hidden; border-radius:24px; background:#e8ebf1; border:1px solid #d4dae4; }
+.home-masthead-copy { position:relative; z-index:1; }
+.home-kicker { display:inline-flex; align-items:center; gap:9px; font-size:10px; font-weight:800; letter-spacing:.16em; color:#354662; }
+.home-kicker > span { width:7px; height:7px; border-radius:50%; background:#284474; box-shadow:0 0 0 4px #28447412; }
+.home-hello { margin:24px 0 8px; color:#424e63; font-size:15px; font-weight:600; }
+.home-masthead h1 { margin:0; font-size:clamp(27px,3.1vw,39px); font-weight:750; line-height:1.2; letter-spacing:-.04em; color:var(--home-ink); }
+.home-masthead h1 span { color:#495a76; }
+.home-intro { margin:18px 0 24px; color:#4c5667; font-size:14px; line-height:1.7; }
+.home-jump { display:inline-flex; gap:24px; align-items:center; background:var(--home-ink); color:white; border-radius:9px; padding:12px 17px; font-size:12px; font-weight:600; text-decoration:none; }
+.home-jump:hover { background:#283a5a; color:white; }
+.home-jump:focus-visible { outline:3px solid #173363; outline-offset:4px; }
+.home-art { position:relative; height:245px; }
+.home-orbit { position:absolute; width:280px; height:280px; left:-10px; top:-15px; border:1px solid #c3cbd9; border-radius:50%; }
+.home-orbit::after { content:''; position:absolute; inset:23px; border:1px solid #c3cbd9; border-radius:50%; }
+.home-art-tile { position:absolute; width:157px; height:180px; top:35px; left:35px; border-radius:19px; }
+.tile-back { background:#b6becd; transform:rotate(18deg) translate(10px,-8px); }
+.tile-front { background:#fafbfe; transform:rotate(-10deg); padding:22px; border:1px solid #d4d8e0; box-shadow:0 16px 24px #24344f20; }
+.art-mark { display:block; color:#25395c; font-size:44px; font-weight:800; line-height:1; letter-spacing:-.08em; }
+.art-line { display:block; height:6px; width:100%; margin-top:15px; border-radius:9px; background:#d6dbe3; }
+.art-line.short { width:65%; margin-top:7px; }
+.art-dots { display:flex; margin-top:17px; padding-left:4px; }
+.art-dots i { width:23px; height:23px; border:3px solid #fafbfe; border-radius:50%; margin-left:-4px; background:#536687; }
+.art-dots i:nth-child(2) { background:#82a2d8; }.art-dots i:nth-child(3) { background:#b4bccb; }
+.art-spark { position:absolute; right:0; top:12px; font-size:43px; color:#6981aa; }
+.home-feed-label { display:flex; align-items:end; justify-content:space-between; gap:16px; margin:34px 0 20px; scroll-margin-top:100px; }
+.home-feed-label h2 { font-size:23px; font-weight:700; letter-spacing:-.03em; color:#242c3b; margin:6px 0 0; }
+.home-order { font-size:11px; color:#686f7b; padding-bottom:4px; }
+.home-feed-design .institutional-feed { max-width:none; gap:22px; }
+.home-feed-design .publication-admin-card { padding:28px 32px 0; border:1px solid #dfe2e6; border-radius:18px; box-shadow:0 4px 16px #232c3c05; overflow:hidden; }
+.home-post-top { display:flex; align-items:center; justify-content:space-between; gap:14px; }
+.home-feed-design .feed-post-author { margin:0; min-width:0; }
+.home-feed-design .feed-post-author .account-avatar { background:#e6e9ef; color:#31425f; border:1px solid #d5dae3; width:40px; height:40px; flex-shrink:0; }
+.home-feed-design .feed-post-author strong { font-size:13px; color:#2c3441; }.home-feed-design .feed-post-author small { font-size:11px; color:#6c727c; }
+.home-content-label { font-size:10px; font-weight:700; color:#505b6f; background:#eff1f5; border:1px solid #dfe3ea; padding:6px 10px; border-radius:6px; }
+.home-feed-design .publication-admin-card h2 { font-size:25px; font-weight:700; letter-spacing:-.025em; line-height:1.3; color:#242c3b; margin:24px 0 16px; }
+.home-feed-design .publication-admin-card > p.preserve { font-size:15px; line-height:1.8; color:#4c5360; margin-bottom:22px; }
+.home-feed-design .feed-image-frame { margin:0 0 20px; }
+.home-feed-design .publication-image { border-radius:12px; border-color:#e8e9ec; aspect-ratio:16/9; background:#fff; }
+.home-feed-design .image-expand { font-size:11px; color:#32415c; border-color:#dbdfe6; padding:7px 12px; }
+.home-feed-design .image-expand:hover { background:#eef1f5; }
+.home-feed-design .call-schedule { border-left:3px solid #95a1b6; background:#f4f5f7; color:#525a68; border-radius:0 8px 8px 0; font-size:12px !important; }
+.home-post-footer { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:12px; border-top:1px solid #ecedf0; background:#fbfcfd; padding:16px 32px; margin:4px -32px 0; }
+.home-post-footer .acknowledgment,.home-post-footer .application-action { padding:0; margin:0; border:0; }
+.home-post-footer .application-action { margin-right:auto; }.home-post-footer .badge { white-space:normal; text-align:left; line-height:1.5; }
+.home-post-footer .btn { font-size:12px; padding:9px 15px; border-radius:8px; box-shadow:none; }
+.home-post-footer .btn-primary { background:#24395e; border-color:#24395e; }.home-post-footer .btn-primary:hover { background:#18263f; }
+.home-post-footer .btn-outline-primary { color:#3c4a63; border-color:#cbd1dc; background:white; }.home-post-footer .btn-outline-primary:hover { background:#e8ecf2; }
+.home-post-footer .acknowledged { background:#eaf3eb; color:#3d654d; font-size:12px; }
+@media(max-width:640px) {
+ .home-masthead { grid-template-columns:1fr; padding:28px; }.home-art { display:none; }
+ .home-masthead h1 { font-size:30px; }.home-hello { margin-top:20px; }
+ .home-order { display:none; }.home-feed-label { margin-top:26px; }
+ .home-feed-design .publication-admin-card { padding:22px 20px 0; }
+ .home-feed-design .publication-admin-card h2 { font-size:22px; }
+ .home-post-footer { padding:14px 20px; margin-left:-20px; margin-right:-20px; }
+ .home-post-top { flex-wrap:wrap; }.home-content-label { font-size:10px; }
+}
+.home-art .art-institution-logo { display:block; width:110px; height:110px; object-fit:contain; border-radius:8px; }
+.home-art .tile-front { padding:16px 22px; background:#fff; }
+.home-art .tile-front .art-line { margin-top:8px; }
+.home-art .tile-front .art-dots { display:none; }
